@@ -1,0 +1,47 @@
+#include "DriveController.h"
+
+DriveController::DriveController() :
+  leftWheel(EPort::PORT_B, Motor::EDirection::COUNTERCLOCKWISE, true),
+  rightWheel(EPort::PORT_A, Motor::EDirection::CLOCKWISE, true){
+
+}
+
+void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
+  leftWheel.setSpeed(left_speed);
+  rightWheel.setSpeed(right_speed);
+
+}
+void DriveController::run_with_speed_and_direction(int velocity, int angular_velocity) {
+  int left_speed = velocity - angular_velocity;
+  int right_speed = velocity + angular_velocity;
+
+  run_with_motor_speeds(left_speed, right_speed);
+}
+void DriveController::stop() {
+  leftWheel.stop();
+  rightWheel.stop();
+}
+
+int DriveController::get_distance() const{
+  return calculate_distance();
+}
+void DriveController::reset_distance(){
+  leftWheel.resetCount();
+  rightWheel.resetCount();
+}
+
+int DriveController::get_angle() const{
+  return calculate_angle();
+}
+
+void DriveController::reset_angle(){
+  leftWheel.resetCount();
+  rightWheel.resetCount();
+}
+
+int DriveController::calculate_distance() const{
+  return wheel_diameter * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2.0);
+}
+int DriveController::calculate_angle() const{
+  return wheel_base * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_diameter);
+}

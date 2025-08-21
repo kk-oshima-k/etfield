@@ -1,0 +1,43 @@
+#include "Scenario.h"
+
+Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController) :
+  current_scene_index(0)
+{
+}
+
+Scenario::~Scenario() {
+  terminate_scenario();
+  while(!scenes.empty()) {
+    delete scenes.back(); // Clean up the allocated scenes
+    scenes.pop_back();
+  }
+}
+
+int Scenario::process_scenario() {
+  int next_scene_index = process_scene(); // Process the current scene
+  if(switch_scene(next_scene_index) == -1){ // Switch to the next scene based on the result
+    return -1;
+  }
+  return 0;
+}
+
+void Scenario::terminate_scenario() {
+  terminate_scene(); // Terminate the current scene
+  current_scene_index = -1; // Reset the scene index
+}
+
+int Scenario::switch_scene(int scene_index) {
+  int previous_scene_index = current_scene_index;
+  if (scene_index < 0 || scene_index >= scenes.size()) {
+    current_scene_index = -1; // End the scenario if the scene index is invalid
+    return -1; // Invalid scene index
+  }
+  current_scene_index = scene_index;
+  return previous_scene_index; // Return the previous scene index
+}
+
+void Scenario::terminate_scene() {
+  if (current_scene_index >= 0 && current_scene_index < scenes.size()) {
+    scenes[current_scene_index]->terminate_scene(); // Terminate the current scene
+  }
+}
