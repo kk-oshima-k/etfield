@@ -9,7 +9,7 @@
 class Scenario2Scene1 : public LineTraceScene {
 public:
   Scenario2Scene1(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 100, bool edge = false, const PIDParameters &pidParameters = {1.0, 0.1, 0.01}, int target = 127,
+          int velocity = 60, bool edge = false, const PIDParameters &pidParameters = {0.6, 0.0, 0.0}, int target = 127,
           LineColor color = LineColor::LINE_COLOR_BLUE,
           int thresholdDistance = 100) :
     LineTraceScene(driveController, colorSensorController, velocity, edge, pidParameters, target, color, thresholdDistance) {}

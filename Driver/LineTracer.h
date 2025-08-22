@@ -28,6 +28,10 @@ private:
   int target; // 目標値
   int previousError;
   int integral;
+
+#ifndef MAKE_RASPIKE
+  bool simup;
+#endif
 };
 
 #endif // LINE_TRACER_H

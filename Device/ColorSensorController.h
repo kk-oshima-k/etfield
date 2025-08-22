@@ -8,6 +8,8 @@ using namespace spikeapi;
 class ColorSensorController : public ColorSensor {
 public:
   ColorSensorController();
+  void getHSV(HSV& hsv, bool surface = true ) const;
+  
 };
 
 #endif // COLOR_SENSOR_CONTROLLER_H
