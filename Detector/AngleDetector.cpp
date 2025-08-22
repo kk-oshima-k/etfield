@@ -1,6 +1,6 @@
 #include "AngleDetector.h"
 
-AngleDetector::AngleDetector(const DriveController &driveController, int thresholdAngle) :
+AngleDetector::AngleDetector(DriveController &driveController, int thresholdAngle) :
   Detector(),
   driveController(driveController),
   thresholdAngle(thresholdAngle) {

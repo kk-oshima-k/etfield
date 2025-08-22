@@ -1,6 +1,6 @@
 #include "DistanceDetector.h"
 
-DistanceDetector::DistanceDetector(const DriveController &driveController, int thresholdDistance) :
+DistanceDetector::DistanceDetector(DriveController &driveController, int thresholdDistance) :
   Detector(),
   driveController(driveController),
   thresholdDistance(thresholdDistance) {
