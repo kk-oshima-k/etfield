@@ -8,3 +8,7 @@ RotationScene::RotationScene(DriveController &driveController,
   angleDetector(driveController, thresholdAngle){
     init(&rotationDriver, {&angleDetector});
 }
+
+void RotationScene::enter_scene() {
+  angleDetector.reset_angle();
+}

@@ -10,6 +10,7 @@ class DistanceDetector : public Detector {
 public:
   DistanceDetector(const DriveController &driveController, int thresholdDistance);
 
+  void reset_distance();
   bool detect() override;
 
 private:

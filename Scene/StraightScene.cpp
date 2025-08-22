@@ -12,3 +12,6 @@ StraightScene::StraightScene(DriveController &driveController, const ColorSensor
 
 }
 
+void StraightScene::enter_scene() {
+  distanceDetector.reset_distance();
+}

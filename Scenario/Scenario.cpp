@@ -27,13 +27,17 @@ void Scenario::terminate_scenario() {
 }
 
 int Scenario::switch_scene(int scene_index) {
-  int previous_scene_index = current_scene_index;
   if (scene_index < 0 || scene_index >= scenes.size()) {
     current_scene_index = -1; // End the scenario if the scene index is invalid
     return -1; // Invalid scene index
   }
-  current_scene_index = scene_index;
-  return previous_scene_index; // Return the previous scene index
+  if(current_scene_index != scene_index){
+    int previous_scene_index = current_scene_index;
+    current_scene_index = scene_index;
+    scenes[current_scene_index]->enter_scene(); // Enter the new scene
+    return previous_scene_index; // Return the previous scene index
+  }
+  return current_scene_index; // No change in scene, return current index
 }
 
 void Scenario::terminate_scene() {

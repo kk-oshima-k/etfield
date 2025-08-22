@@ -18,6 +18,8 @@ public:
                  LineColor color = LineColor::LINE_COLOR_BLUE,
                  int thresholdDistance = 100);
 
+  void enter_scene() override;
+
 protected:
   LineTracer lineTracer;
   ColorDetector colorDetector;

@@ -10,6 +10,7 @@ class AngleDetector : public Detector {
 public:
   AngleDetector(const DriveController &driveController, int thresholdAngle);
 
+  void reset_angle();
   bool detect() override;
 
 private:

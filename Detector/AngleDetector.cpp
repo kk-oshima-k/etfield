@@ -6,6 +6,10 @@ AngleDetector::AngleDetector(const DriveController &driveController, int thresho
   thresholdAngle(thresholdAngle) {
 }
 
+void AngleDetector::reset_angle() {
+  driveController.reset_angle();
+}
+
 bool AngleDetector::detect() {
   int angle = driveController.get_angle();
   

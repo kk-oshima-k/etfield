@@ -34,7 +34,7 @@ int Scenario2::Scenario2::process_scene() {
 }
 
 int Scenario2::switch_scene(int scene_index){
-    if (this->current_scene_index != scene_index)
+    if (current_scene_index != scene_index)
         printf("Switch to Scenario 2 / Scene %d\n", scene_index);
-    Scenario::switch_scene(scene_index);
+    return Scenario::switch_scene(scene_index);
 }

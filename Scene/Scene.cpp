@@ -12,6 +12,10 @@ Scene::~Scene() {
   terminate_scene();
 }
 
+void Scene::enter_scene() {
+  // Initialize or reset any necessary variables for the scene
+}
+
 int Scene::process_scene() {
   process_drive();
   if(process_finish_detect()) {
