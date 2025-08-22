@@ -1,4 +1,5 @@
 #include "DriveController.h"
+#include <cstdio>
 
 DriveController::DriveController() :
   leftWheel(EPort::PORT_B, Motor::EDirection::COUNTERCLOCKWISE, true),
@@ -43,5 +44,8 @@ int DriveController::calculate_distance() const{
   return wheel_diameter * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2.0);
 }
 int DriveController::calculate_angle() const{
-  return wheel_base * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_diameter);
+
+  int angle = wheel_diameter * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_base);
+  printf("%3d\n", angle);
+  return angle;
 }

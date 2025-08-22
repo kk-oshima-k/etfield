@@ -17,7 +17,7 @@ public:
 
 protected:
   virtual int process_scene() = 0;
-  int switch_scene(int scene_index);
+  virtual int switch_scene(int scene_index);
   void terminate_scene();
 
 

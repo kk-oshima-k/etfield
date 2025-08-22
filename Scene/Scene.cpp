@@ -29,15 +29,12 @@ void Scene::process_drive() {
 }
 
 bool Scene::process_finish_detect() {
-  return false;
-
-
   for (auto &detector : detectors) {
-    if (detector->detect()) {
-      return true;
+    if (!detector->detect()) {
+      return false;
     }
   }
-  return false;
+  return true;
 }
 
 void Scene::terminate_drive() {

@@ -9,8 +9,8 @@ const LineColorThresholds ColorDetector::RED_THRESHOLD={
   {330, 200, 200}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::BLUE_THRESHOLD={
-  {270, 255, 255},   // upperThreshold
-  {210, 200, 200}    // lowerThreshold
+  {270, 150, 150},   // upperThreshold
+  {210, 100, 100}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::GRAY_THRESHOLD={
   {359,  80,  80},   // upperThreshold
