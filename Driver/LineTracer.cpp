@@ -1,11 +1,11 @@
 #include "LineTracer.h"
 #include <cstdio>
 
-LineTracer::LineTracer(DriveController &driveController, const ColorSensorController &colorSensorController, int velocity, bool edge, const PIDParameters &pidParameters, int target) :
+LineTracer::LineTracer(DriveController &driveController, const ColorSensorController &colorSensorController, int velocity, bool rightEdge, const PIDParameters &pidParameters, int target) :
   Driver(driveController),
   colorSensorController(colorSensorController),
   velocity(velocity),
-  edge(edge),
+  rightEdge(rightEdge),
   pidParameters(pidParameters),
   target(target),
   previousError(0),
@@ -17,7 +17,7 @@ LineTracer::LineTracer(DriveController &driveController, const ColorSensorContro
 
 void LineTracer::drive() {
   int gain = calculate_PID_gain();
-  if (edge == false) { // Left edge
+  if (rightEdge == false) { // Left edge
     driveController.run_with_speed_and_direction(velocity, gain);
   } else { // Right edge
     driveController.run_with_speed_and_direction(velocity, -gain);

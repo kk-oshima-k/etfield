@@ -10,7 +10,7 @@ using namespace spikeapi;
 
 class LineTracer : public Driver {
 public:
-  LineTracer(DriveController &driveController, const ColorSensorController &colorSensorController, int velocity, bool edge, const PIDParameters &pidParameters, int target=127);
+  LineTracer(DriveController &driveController, const ColorSensorController &colorSensorController, int velocity, bool rightEdges, const PIDParameters &pidParameters, int target=127);
 
   void drive() override;
 
@@ -21,7 +21,7 @@ private:
   const ColorSensorController &colorSensorController;
 
   int velocity;
-  bool edge; // true: Right, false: Left
+  bool rightEdge; // true: Right, false: Left
   PIDParameters pidParameters;
   
   // PID制御用の変数

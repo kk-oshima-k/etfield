@@ -20,7 +20,6 @@ protected:
   virtual int switch_scene(int scene_index);
   void terminate_scene();
 
-
 protected:
   int current_scene_index;
   std::vector<Scene *> scenes;

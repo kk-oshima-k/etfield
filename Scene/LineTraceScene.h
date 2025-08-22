@@ -14,7 +14,7 @@ using namespace spikeapi;
 class LineTraceScene : public Scene {
 public:
   LineTraceScene(DriveController &driveController, const ColorSensorController &colorSensorController,
-                 int velocity = 100, bool edge = false, const PIDParameters &pidParameters = {1.0, 0.1, 0.01}, int target = 127,
+                 int velocity = 100, bool rightEdge = false, const PIDParameters &pidParameters = {1.0, 0.1, 0.01}, int target = 127,
                  LineColor color = LineColor::LINE_COLOR_BLUE,
                  int thresholdDistance = 100);
 
