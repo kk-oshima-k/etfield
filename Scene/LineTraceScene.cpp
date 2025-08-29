@@ -10,3 +10,7 @@ LineTraceScene::LineTraceScene(DriveController &driveController, const ColorSens
   distanceDetector(driveController, thresholdDistance){
     init(&lineTracer, {&colorDetector, &distanceDetector});
 }
+
+void LineTraceScene::enter_scene() {
+  distanceDetector.reset_distance();
+} 

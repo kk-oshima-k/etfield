@@ -1,9 +1,13 @@
 #include "AngleDetector.h"
 
-AngleDetector::AngleDetector(const DriveController &driveController, int thresholdAngle) :
+AngleDetector::AngleDetector(DriveController &driveController, int thresholdAngle) :
   Detector(),
   driveController(driveController),
   thresholdAngle(thresholdAngle) {
+}
+
+void AngleDetector::reset_angle() {
+  driveController.reset_angle();
 }
 
 bool AngleDetector::detect() {

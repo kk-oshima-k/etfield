@@ -8,12 +8,13 @@ using namespace spikeapi;
 
 class AngleDetector : public Detector {
 public:
-  AngleDetector(const DriveController &driveController, int thresholdAngle);
+  AngleDetector(DriveController &driveController, int thresholdAngle);
 
+  void reset_angle();
   bool detect() override;
 
 private:
-  const DriveController &driveController;
+  DriveController &driveController;
 
   int thresholdAngle;
 };

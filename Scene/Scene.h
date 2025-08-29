@@ -14,6 +14,7 @@ public:
   virtual ~Scene();
 
 public:
+  virtual void enter_scene();
   int process_scene();
   void terminate_scene();
 

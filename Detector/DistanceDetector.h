@@ -8,12 +8,13 @@ using namespace spikeapi;
 
 class DistanceDetector : public Detector {
 public:
-  DistanceDetector(const DriveController &driveController, int thresholdDistance);
+  DistanceDetector(DriveController &driveController, int thresholdDistance);
 
+  void reset_distance();
   bool detect() override;
 
 private:
-  const DriveController &driveController;
+  DriveController &driveController;
 
   int thresholdDistance;
 };

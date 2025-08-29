@@ -15,6 +15,8 @@ public:
                  int angularVelocity = 100,
                  int thresholdAngle = 90);
 
+  void enter_scene() override;
+
 protected:
   RotationDriver rotationDriver;
   AngleDetector angleDetector;
