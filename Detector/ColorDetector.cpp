@@ -9,8 +9,8 @@ const LineColorThresholds ColorDetector::RED_THRESHOLD={
   {330, 200, 200}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::BLUE_THRESHOLD={
-  {270, 150, 150},   // upperThreshold
-  {210, 100, 100}    // lowerThreshold
+  {235, 127, 85},   // upperThreshold
+  {175, 67, 45}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::GRAY_THRESHOLD={
   {359,  80,  80},   // upperThreshold
@@ -24,8 +24,8 @@ ColorDetector::ColorDetector(const ColorSensorController &colorSensorController,
 }
 
 bool ColorDetector::detect() {
-  ColorSensor::HSV hsv;
-  colorSensorController.getHSV(hsv);
+  ColorSensorController::myHSV hsv;
+  colorSensorController.getHSV_test(hsv);
 
   if(color == LINE_COLOR_BLACK) {
     return checkColor(hsv, BLACK_THRESHOLD);
@@ -41,7 +41,7 @@ bool ColorDetector::detect() {
   }
 }
 
-bool ColorDetector::checkColor(const ColorSensor::HSV& hsv, const LineColorThresholds& thresholds) {
+bool ColorDetector::checkColor(const ColorSensorController::myHSV& hsv, const LineColorThresholds& thresholds) {
   if (thresholds.lowerThreshold.h < thresholds.upperThreshold.h) {
     // Normal case where lower threshold is less than upper threshold
     return (thresholds.lowerThreshold.h <= hsv.h && hsv.h <= thresholds.upperThreshold.h &&

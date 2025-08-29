@@ -14,7 +14,7 @@ public:
   bool detect() override;
 
 private:
-  bool checkColor(const ColorSensor::HSV& hsv, const LineColorThresholds& thresholds);
+  bool checkColor(const ColorSensorController::myHSV& hsv, const LineColorThresholds& thresholds);
 
 private:
   static const LineColorThresholds BLACK_THRESHOLD;

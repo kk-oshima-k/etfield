@@ -1,6 +1,8 @@
 #include "DriveController.h"
 #include <cstdio>
 
+extern FILE *fp;
+
 DriveController::DriveController() :
   leftWheel(EPort::PORT_B, Motor::EDirection::COUNTERCLOCKWISE, true),
   rightWheel(EPort::PORT_A, Motor::EDirection::CLOCKWISE, true){
@@ -47,5 +49,6 @@ int DriveController::calculate_angle() const{
 
   int angle = wheel_diameter * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_base);
   printf("%3d\n", angle);
+  fprintf(fp, "%3d\n", angle);
   return angle;
 }

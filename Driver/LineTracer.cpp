@@ -1,6 +1,8 @@
 #include "LineTracer.h"
 #include <cstdio>
 
+extern FILE *fp;
+
 LineTracer::LineTracer(DriveController &driveController, const ColorSensorController &colorSensorController, int velocity, bool rightEdge, const PIDParameters &pidParameters, int target) :
   Driver(driveController),
   colorSensorController(colorSensorController),
@@ -25,14 +27,15 @@ void LineTracer::drive() {
 }
 
 int LineTracer::calculate_PID_gain() {
-  ColorSensorController::HSV hsv;
-  colorSensorController.getHSV(hsv);
+  ColorSensorController::myHSV hsv;
+  colorSensorController.getHSV_test(hsv);
   ColorSensorController::RGB rgb;
   colorSensorController.getRGB(rgb);
 #ifndef MAKE_RASPIKE
   if(simup == false){
     if(hsv.v == 0){
       printf("waiting for initialize...\n");
+      fprintf(fp, "waiting for initialize...\n");
       return 0;
     }else{
       simup = true;
@@ -53,7 +56,8 @@ int LineTracer::calculate_PID_gain() {
   // PID制御の出力を計算
   int output = pidParameters.kp * error + pidParameters.ki * integral + pidParameters.kd * derivative;
   
-  printf("%3d %3d %3d %3d %3d %3d %4d %4d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral);
+  printf("%4d %4d %4d %3d %3d %4d %4d %4d %7d %4d %5d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+  fprintf(fp, "%3d %3d %3d %3d %3d %3d %4d %4d %d %d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
   // 前回の偏差を保存
   previousError = error;
   

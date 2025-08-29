@@ -1,12 +1,14 @@
 #include "Scenario2.h"
 #include <cstdio>
 
+extern FILE *fp;
+
 Scenario2::Scenario2(DriveController &driveController, const ColorSensorController &colorSensorController) :
     Scenario(driveController, colorSensorController)
 {
     scenes.push_back(new Scenario2Scene1(driveController, colorSensorController));
     scenes.push_back(new Scenario2Scene2(driveController));
-    scenes.push_back(new Scenario2Scene3(driveController, colorSensorController));
+    // scenes.push_back(new Scenario2Scene3(driveController, colorSensorController));
 //    scenes.push_back(new Scenario2Scene4(driveController));
 //    scenes.push_back(new Scenario2Scene5(driveController, colorSensorController));
 //    scenes.push_back(new Scenario2Scene6(driveController));
@@ -34,7 +36,9 @@ int Scenario2::Scenario2::process_scene() {
 }
 
 int Scenario2::switch_scene(int scene_index){
-    if (current_scene_index != scene_index)
+    if (current_scene_index != scene_index){
         printf("Switch to Scenario 2 / Scene %d\n", scene_index);
+        fprintf(fp, "Switch to Scenario 2 / Scene %d\n", scene_index);
+    }
     return Scenario::switch_scene(scene_index);
 }

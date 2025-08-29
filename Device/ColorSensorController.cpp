@@ -5,6 +5,10 @@ ColorSensorController::ColorSensorController() :
 }
 
 void ColorSensorController::getHSV(HSV& hsv, bool surface) const { 
+  ColorSensor::getHSV(hsv, surface);
+  return;
+}
+void ColorSensorController::getHSV_test(myHSV& hsv) const { 
   RGB rgb;
   getRGB(rgb);
   uint16_t max,min;
