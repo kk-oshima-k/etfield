@@ -1,5 +1,9 @@
 #include "ColorDetector.h"
 
+const LineColorThresholds ColorDetector::WHITE_THRESHOLD={
+  {  0,   0,   0},   // upperThreshold
+  {  0,   0,   0}    // lowerThreshold
+};
 const LineColorThresholds ColorDetector::BLACK_THRESHOLD={
   {359,  40,  40},   // upperThreshold
   {  0,   0,   0}    // lowerThreshold
@@ -24,10 +28,18 @@ ColorDetector::ColorDetector(const ColorSensorController &colorSensorController,
 }
 
 bool ColorDetector::detect() {
+  if(color == LINE_COLOR_NONE){
+    return false;
+  } else if (color == LINE_COLOR_ANY){
+    return true;
+  }
+  
   ColorSensorController::myHSV hsv;
   colorSensorController.getHSV_test(hsv);
 
-  if(color == LINE_COLOR_BLACK) {
+  if (color == LINE_COLOR_WHITE) {
+    return checkColor(hsv, WHITE_THRESHOLD);
+  } else if(color == LINE_COLOR_BLACK) {
     return checkColor(hsv, BLACK_THRESHOLD);
   } else if (color == LINE_COLOR_RED) {
     return checkColor(hsv, RED_THRESHOLD);
@@ -37,7 +49,7 @@ bool ColorDetector::detect() {
     return checkColor(hsv, GRAY_THRESHOLD);
   } else {
     // LINE_COLOR_NONE or any other color not defined
-    return 0; // Not detected
+    return false; // Not detected
   }
 }
 

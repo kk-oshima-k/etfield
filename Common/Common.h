@@ -12,6 +12,7 @@ enum LineColor {
   LINE_COLOR_GRAY = 5,
 //   LINE_COLOR_GREEN = 6,
 //   LINE_COLOR_YELLOW = 7,
+  LINE_COLOR_ANY = -1,
 };
 
 struct LineColorThresholds {

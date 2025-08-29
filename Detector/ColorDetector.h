@@ -17,6 +17,7 @@ private:
   bool checkColor(const ColorSensorController::myHSV& hsv, const LineColorThresholds& thresholds);
 
 private:
+  static const LineColorThresholds WHITE_THRESHOLD;
   static const LineColorThresholds BLACK_THRESHOLD;
   static const LineColorThresholds RED_THRESHOLD;
   static const LineColorThresholds BLUE_THRESHOLD;
