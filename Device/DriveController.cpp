@@ -43,11 +43,11 @@ void DriveController::reset_angle(){
 }
 
 int DriveController::calculate_distance() const{
-  return wheel_diameter * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2.0);
+  return wheel_diameter / 2.0 * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2.0);
 }
 int DriveController::calculate_angle() const{
 
-  int angle = wheel_diameter * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_base);
+  int angle = wheel_diameter * degrees_to_radians(rightWheel.getCount() - leftWheel.getCount()) / wheel_base;
   printf("%3d\n", angle);
   fprintf(fp, "%3d\n", angle);
   return angle;
