@@ -105,7 +105,7 @@ public:
 };
 class Scenario3Scene15 : public RotationScene {
 public:
-  Scenario3Scene11(DriveController &driveController, int angularVelocity = 100, int thresholdAngle = 90) :
+  Scenario3Scene15(DriveController &driveController, int angularVelocity = 100, int thresholdAngle = 90) :
     RotationScene(driveController, angularVelocity, thresholdAngle) {}
 };
 
@@ -118,8 +118,5 @@ public:
   int switch_scene(int scene_index);
 
 };
-
-
-
 
 #endif // SCENARIO3_H
