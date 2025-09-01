@@ -15,8 +15,7 @@ public:
   } myHSV;
   
   ColorSensorController();
-  void getHSV(HSV& hsv, bool surface = true ) const;
-  void getHSV_test(myHSV& hsv) const;
+  void getHSV(myHSV& hsv) const;
   
 };
 
