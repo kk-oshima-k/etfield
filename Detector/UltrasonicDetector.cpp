@@ -1,17 +1,13 @@
-#include "DistanceDetector.h"
+#include "UltrasonicDetector.h"
 
-DistanceDetector::DistanceDetector(DriveController &driveController, int thresholdDistance) :
+UltrasonicDetector::UltrasonicDetector(UltrasonicSensorController &ultrasonicSensorController, int thresholdDistance) :
   Detector(),
-  driveController(driveController),
+  ultrasonicSensorController(ultrasonicSensorController),
   thresholdDistance(thresholdDistance) {
 }
 
-void DistanceDetector::reset_distance() {
-  driveController.reset_distance();
-}
-
-bool DistanceDetector::detect() {
-  int distance = driveController.get_distance();
+bool UltrasonicDetector::detect() {
+  int distance = ultrasonicSensorController.get_distance();
   if (thresholdDistance > 0){
     return thresholdDistance < distance ; // Return true if detected within threshold, else false
   } else if(thresholdDistance < 0){

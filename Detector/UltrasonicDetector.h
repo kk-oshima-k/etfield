@@ -8,12 +8,12 @@ using namespace spikeapi;
 
 class UltrasonicDetector : public Detector {
 public:
-  UltrasonicDetector(DriveController &driveController, int thresholdDistance);
+  UltrasonicDetector(UltrasonicSensorController &ultrasonicSensorController, int thresholdDistance);
 
   bool detect() override;
 
 private:
-  DriveController &driveController;
+  UltrasonicSensorController &ultrasonicSensorController;
 
   int thresholdDistance;
 };

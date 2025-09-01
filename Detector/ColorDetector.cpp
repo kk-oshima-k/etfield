@@ -35,7 +35,7 @@ bool ColorDetector::detect() {
   }
   
   ColorSensorController::myHSV hsv;
-  colorSensorController.getHSV_test(hsv);
+  colorSensorController.getHSV(hsv);
 
   if (color == LINE_COLOR_WHITE) {
     return checkColor(hsv, WHITE_THRESHOLD);

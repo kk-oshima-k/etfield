@@ -9,7 +9,7 @@ class UltrasonicSensorController : public UltrasonicSensor {
 public:
 
   UltrasonicSensorController();
-  int32_t getDistance() const;
+  int32_t get_distance() const;
   
 };
 
