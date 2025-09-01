@@ -28,7 +28,7 @@ void LineTracer::drive() {
 
 int LineTracer::calculate_PID_gain() {
   ColorSensorController::myHSV hsv;
-  colorSensorController.getHSV_test(hsv);
+  colorSensorController.getHSV(hsv);
   ColorSensorController::RGB rgb;
   colorSensorController.getRGB(rgb);
 #ifndef MAKE_RASPIKE
