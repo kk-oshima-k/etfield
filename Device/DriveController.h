@@ -21,6 +21,8 @@ public:
   void reset_angle();
 
 private:
+  int calculate_velocity2rotation(int velocity) const;
+
   int calculate_distance() const;
   int calculate_angle() const;
 

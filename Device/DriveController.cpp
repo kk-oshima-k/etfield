@@ -9,14 +9,23 @@ DriveController::DriveController() :
 
 }
 
+/**
+ * int left_speed : °/s
+ * int right_speed : °/s
+ */
 void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
   leftWheel.setSpeed(left_speed);
   rightWheel.setSpeed(right_speed);
 
 }
+
+/**
+ * int velocity : cm/s
+ * int angular_velocity : °/s
+ */
 void DriveController::run_with_speed_and_direction(int velocity, int angular_velocity) {
-  int left_speed = velocity - angular_velocity;
-  int right_speed = velocity + angular_velocity;
+  int left_speed = calculate_velocity2rotation(velocity) - angular_velocity;
+  int right_speed = calculate_velocity2rotation(velocity) + angular_velocity;
 
   run_with_motor_speeds(left_speed, right_speed);
 }
@@ -42,9 +51,14 @@ void DriveController::reset_angle(){
   rightWheel.resetCount();
 }
 
+int DriveController::calculate_velocity2rotation(int velocity) const{
+  return radians_to_degrees(velocity / (wheel_diameter / 2));
+}
+
 int DriveController::calculate_distance() const{
   return wheel_diameter / 2.0 * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2.0);
 }
+
 int DriveController::calculate_angle() const{
 
   int angle = wheel_diameter * degrees_to_radians(rightWheel.getCount() - leftWheel.getCount()) / wheel_base;
