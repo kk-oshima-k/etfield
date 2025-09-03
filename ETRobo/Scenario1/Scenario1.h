@@ -7,14 +7,14 @@
 #include "../../Scene/RotationScene.h"
 #include "../../Scene/FindBottleWithLineTraceScene.h"
 
-class Scenario1Scene1 : public FindBottleWithLineTraceSceneace {
+class Scenario1Scene1 : public FindBottleWithLineTraceScene {
 public:
   Scenario1Scene1(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController,
           int velocity = 300, bool rightEdge = false, const PIDParameters &pidParameters = {0.25, 0.005*0, 0.25*0}, int target = 525,
           LineColor color = LineColor::LINE_COLOR_NONE,
           int thresholdDistance = 100,
           int bottleDistace = 10) :
-    FindBottleWithLineTraceScene(driveController, colorSensorController, velocity, rightEdge, pidParameters, target, color, thresholdDistance, bottleDistace) {}
+    FindBottleWithLineTraceScene(driveController, colorSensorController, ultrasonicSensorController, velocity, rightEdge, pidParameters, target, color, thresholdDistance, bottleDistace) {}
 };
 class Scenario1Scene2 : public RotationScene {
 public:
