@@ -14,8 +14,8 @@ DriveController::DriveController() :
  * int right_speed : °/s
  */
 void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
-  leftWheel.setSpeed(left_speed);
-  rightWheel.setSpeed(right_speed);
+  leftWheel.setPower(left_speed);
+  rightWheel.setPower(right_speed);
 
 }
 
@@ -24,8 +24,8 @@ void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
  * int angular_velocity : °/s
  */
 void DriveController::run_with_speed_and_direction(int velocity, int angular_velocity) {
-  int left_speed = calculate_velocity2rotation(velocity) - angular_velocity;
-  int right_speed = calculate_velocity2rotation(velocity) + angular_velocity;
+  int left_speed = velocity - angular_velocity;
+  int right_speed = velocity + angular_velocity;
 
   run_with_motor_speeds(left_speed, right_speed);
 }

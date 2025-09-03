@@ -43,7 +43,7 @@ int LineTracer::calculate_PID_gain() {
   }
 #endif
 
-  const double T = (10*1000) / (1.0*1000*1000);
+  const double T = (50*1000) / (1.0*1000*1000);
   
   // 現在の偏差を計算 今は明度を利用　TODO: 色相や彩度を利用する場合は適宜変更
   int error = target - hsv.v;
