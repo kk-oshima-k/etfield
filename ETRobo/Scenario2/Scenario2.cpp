@@ -6,8 +6,9 @@ extern FILE *fp;
 Scenario2::Scenario2(DriveController &driveController, const ColorSensorController &colorSensorController) :
     Scenario(driveController, colorSensorController)
 {
-    scenes.push_back(new Scenario2Scene1(driveController, colorSensorController));
-    scenes.push_back(new Scenario2Scene2(driveController));
+    scenes.push_back(new LineTraceScene(driveController, colorSensorController, 50, false, {5.0, 0, 0}, 54, LINE_COLOR_NONE, 0));
+    // scenes.push_back(new Scenario2Scene1(driveController, colorSensorController));
+    // scenes.push_back(new Scenario2Scene2(driveController));
     // scenes.push_back(new Scenario2Scene3(driveController, colorSensorController));
 //    scenes.push_back(new Scenario2Scene4(driveController));
 //    scenes.push_back(new Scenario2Scene5(driveController, colorSensorController));

@@ -43,5 +43,5 @@ void ColorSensorController::getHSV(myHSV& hsv) const {
   }
   
   hsv.s = 255 * (max - min) / max;
-  hsv.v = max;
+  hsv.v = max * 100 / 1024;
 } 
