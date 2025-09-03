@@ -1,6 +1,6 @@
 #include "UltrasonicDetector.h"
 
-UltrasonicDetector::UltrasonicDetector(UltrasonicSensorController &ultrasonicSensorController, int thresholdDistance) :
+UltrasonicDetector::UltrasonicDetector(const UltrasonicSensorController &ultrasonicSensorController, int thresholdDistance) :
   Detector(),
   ultrasonicSensorController(ultrasonicSensorController),
   thresholdDistance(thresholdDistance) {

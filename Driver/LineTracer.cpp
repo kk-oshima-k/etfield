@@ -20,9 +20,9 @@ LineTracer::LineTracer(DriveController &driveController, const ColorSensorContro
 void LineTracer::drive() {
   int gain = calculate_PID_gain();
   if (rightEdge == false) { // Left edge
-    driveController.run_with_speed_and_direction(velocity, gain);
+    driveController.run_with_power_and_direction(velocity, gain);
   } else { // Right edge
-    driveController.run_with_speed_and_direction(velocity, -gain);
+    driveController.run_with_power_and_direction(velocity, -gain);
    }
 }
 
@@ -56,7 +56,7 @@ int LineTracer::calculate_PID_gain() {
   // PID制御の出力を計算
   int output = pidParameters.kp * error + pidParameters.ki * integral + pidParameters.kd * derivative;
   
-  printf("%4d %4d %4d %3d %3d %4d %4d %4d %7d %4d %5d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+  printf("%4d %4d %4d %3d %3d %4d %4d %4d %7d %4d %5d \n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
   fprintf(fp, "%3d %3d %3d %3d %3d %3d %4d %4d %d %d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
   // 前回の偏差を保存
   previousError = error;

@@ -1,10 +1,10 @@
 #include "ETRobo.h"
 #include <cstdio>
 
-ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController) :
+ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scenario_index(0)
 {
-    scenarios.push_back(new Scenario2(driveController, colorSensorController));
+    scenarios.push_back(new Scenario1(driveController, colorSensorController, ultrasonicSensorController));
 }
 
 ETRobo::~ETRobo() {
@@ -13,6 +13,10 @@ ETRobo::~ETRobo() {
     delete scenarios.back(); // Clean up the allocated scenarios
     scenarios.pop_back();
   }
+}
+
+void ETRobo::initialize(){
+  scenarios[current_scenario_index]->enter_scenario();
 }
 
 int ETRobo::process() {
@@ -43,8 +47,13 @@ int ETRobo::switch_scenario(int scenario_index) {
     current_scenario_index = -1; // End the scenario if the scene index is invalid
     return -1; // Invalid scene index
   }
-  current_scenario_index = scenario_index;
-  return previous_scenario_index; // Return the previous scenario index
+  if(current_scenario_index != scenario_index){
+    int previous_scenario_index = current_scenario_index;
+    current_scenario_index = scenario_index;
+    scenarios[current_scenario_index]->enter_scenario();
+    return previous_scenario_index; // Return the previous scenario index
+  }
+  return current_scenario_index;
 }
 
 void ETRobo::terminate_scenario() {
