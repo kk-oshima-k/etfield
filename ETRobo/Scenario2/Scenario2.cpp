@@ -1,7 +1,9 @@
 #include "Scenario2.h"
 #include <cstdio>
 
+#ifdef MAKE_RASPIKE // not sim
 extern FILE *fp;
+#endif
 
 Scenario2::Scenario2(DriveController &driveController, const ColorSensorController &colorSensorController) :
     Scenario(driveController, colorSensorController)
@@ -38,7 +40,9 @@ int Scenario2::Scenario2::process_scene() {
 int Scenario2::switch_scene(int scene_index){
     if (current_scene_index != scene_index){
         printf("Switch to Scenario 2 / Scene %d\n", scene_index);
+#ifdef MAKE_RASPIKE // not sim
         fprintf(fp, "Switch to Scenario 2 / Scene %d\n", scene_index);
+#endif
     }
     return Scenario::switch_scene(scene_index);
 }

@@ -4,7 +4,7 @@
 ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController) :
   current_scenario_index(0)
 {
-    scenarios.push_back(new Scenario2(driveController, colorSensorController));
+    scenarios.push_back(new Scenario3(driveController, colorSensorController));
 }
 
 ETRobo::~ETRobo() {
@@ -17,6 +17,7 @@ ETRobo::~ETRobo() {
 
 int ETRobo::process() {
   int next_scenario_index = process_scenario(); // Process the current scenario
+  printf("e%d\n", next_scenario_index);
   if(switch_scenario(next_scenario_index) == -1) // Switch to the next scenario based on the result
     return -1;
   return 0;

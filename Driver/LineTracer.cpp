@@ -1,7 +1,9 @@
 #include "LineTracer.h"
 #include <cstdio>
 
+#ifdef MAKE_RASPIKE // not sim
 extern FILE *fp;
+#endif
 
 LineTracer::LineTracer(DriveController &driveController, const ColorSensorController &colorSensorController, int velocity, bool rightEdge, const PIDParameters &pidParameters, int target) :
   Driver(driveController),
@@ -35,7 +37,9 @@ int LineTracer::calculate_PID_gain() {
   if(simup == false){
     if(hsv.v == 0){
       printf("waiting for initialize...\n");
+#ifdef MAKE_RASPIKE // not sim
       fprintf(fp, "waiting for initialize...\n");
+#endif
       return 0;
     }else{
       simup = true;
@@ -57,7 +61,9 @@ int LineTracer::calculate_PID_gain() {
   int output = pidParameters.kp * error + pidParameters.ki * integral + pidParameters.kd * derivative;
   
   printf("%4d %4d %4d %3d %3d %4d %4d %4d %7d %4d %5d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+#ifdef MAKE_RASPIKE // not sim
   fprintf(fp, "%3d %3d %3d %3d %3d %3d %4d %4d %d %d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+#endif
   // 前回の偏差を保存
   previousError = error;
   

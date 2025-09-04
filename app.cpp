@@ -12,7 +12,9 @@
 
 ETRobo *etrobo;
 
+#ifdef MAKE_RASPIKE // not sim
 FILE *fp;
+#endif
 
 using namespace spikeapi;
 
@@ -35,10 +37,13 @@ void main_task(intptr_t unused) {
 
   char datetime[64];
   char path[256];
+#ifdef MAKE_RASPIKE // not sim
   time_t t = time(NULL);
   strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
-  sprintf(path, "/home/kklab/%s.txt", datetime);
+  sprintf(path, "/home/kklab/etrobo/workspace/etfield/log/%s.txt", datetime);
+  printf("test:%s\n", path);
   fp = fopen(path, "a");
+#endif
 
   while (!forceSensor.isTouched()) {
       clock.sleep(duration);
@@ -46,7 +51,9 @@ void main_task(intptr_t unused) {
 
   stp_cyc(ETROBO_CYC);
   etrobo->terminate();
+#ifdef MAKE_RASPIKE // not sim
   fclose(fp);
+#endif
   ext_tsk(); // <5>
 }
 
