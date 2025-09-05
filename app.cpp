@@ -31,7 +31,7 @@ void main_task(intptr_t unused) {
   DriveController driveController;
   ColorSensorController colorSensorController;
   UltrasonicSensorController ultrasonicSensorController;
-  etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
+  etrobo = new ETRobo(driveController, colorSensorController);
   etrobo->initialize();
 
   sta_cyc(ETROBO_CYC);

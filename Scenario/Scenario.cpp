@@ -1,6 +1,6 @@
 #include "Scenario.h"
 
-Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
+Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController) :
   current_scene_index(0)
 {
 }

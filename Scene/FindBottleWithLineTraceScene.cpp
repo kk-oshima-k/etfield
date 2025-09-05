@@ -5,7 +5,7 @@ FindBottleWithLineTraceScene::FindBottleWithLineTraceScene(DriveController &driv
                                                            int velocity, bool rightEdge, const PIDParameters &pidParameters, int target,
                                                            LineColor color,
                                                            int thresholdDistance,
-                                                           int bottleDistace) :
+                                                           int bottleDistance) :
   lineTracer(driveController, colorSensorController, velocity, rightEdge, pidParameters, target),
   distanceDetector(driveController, thresholdDistance),
   ultrasonicDetector(ultrasonicSensorController, bottleDistance)

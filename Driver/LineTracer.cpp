@@ -43,22 +43,21 @@ int LineTracer::calculate_PID_gain() {
   }
 #endif
 
-  const double T = (50*1000) / (1.0*1000*1000);
   
   // 現在の偏差を計算 今は明度を利用　TODO: 色相や彩度を利用する場合は適宜変更
   int error = target - hsv.v;
   
   // 積分項を更新（積分の蓄積）
-  integral += (error + previousError) * T / 2;
+  integral += error;
   
   // 微分項を計算
-  double derivative = (error - previousError) / T;
+  int derivative = error - previousError;
   
   // PID制御の出力を計算
   int output = pidParameters.kp * error + pidParameters.ki * integral + pidParameters.kd * derivative;
   
-  printf("r%4d g%4d b%4d h%3d s%3d v%4d e%4d d%4.0f i%7.2f o%4d d%5d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
-  fprintf(fp, "%d %d %d %d %d %d %d %f %f %d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+  printf("%4d %4d %4d %3d %3d %4d %4d %4d %7d %4d %5d \n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+  fprintf(fp, "%3d %3d %3d %3d %3d %3d %4d %4d %d %d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
   // 前回の偏差を保存
   previousError = error;
   

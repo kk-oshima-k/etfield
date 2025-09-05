@@ -9,27 +9,27 @@
 class Scenario2Scene1 : public LineTraceScene {
 public:
   Scenario2Scene1(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 10, bool rightEdge = false, const PIDParameters &pidParameters = {0.25*0, 0.005*0, 0.25*0}, int target = 525,
+          int velocity = 50, bool rightEdge = false, const PIDParameters &pidParameters = {0.6, 0.005*0, 0.25*0}, int target = 54,
           LineColor color = LineColor::LINE_COLOR_BLUE,
           int thresholdDistance = 100) :
     LineTraceScene(driveController, colorSensorController, velocity, rightEdge, pidParameters, target, color, thresholdDistance) {}
 };
 class Scenario2Scene2 : public RotationScene {
 public:
-  Scenario2Scene2(DriveController &driveController, int angularVelocity = -30, int thresholdAngle = -320) :
+  Scenario2Scene2(DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -20) :
     RotationScene(driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario2Scene3 : public StraightScene {
 public:
   Scenario2Scene3(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 100,
+          int velocity = 50,
           LineColor color = LineColor::LINE_COLOR_BLACK,
           int thresholdDistance = 100) :
     StraightScene(driveController, colorSensorController, velocity, color, thresholdDistance) {}
 };
 class Scenario2Scene4 : public RotationScene {
 public:
-  Scenario2Scene4(DriveController &driveController, int angularVelocity = 100, int thresholdAngle = 90) :
+  Scenario2Scene4(DriveController &driveController, int angularVelocity = 50, int thresholdAngle = 90) :
     RotationScene(driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario2Scene5 : public LineTraceScene {
