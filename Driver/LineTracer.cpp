@@ -20,9 +20,9 @@ LineTracer::LineTracer(DriveController &driveController, const ColorSensorContro
 void LineTracer::drive() {
   int gain = calculate_PID_gain();
   if (rightEdge == false) { // Left edge
-    driveController.run_with_speed_and_direction(velocity, gain);
+    driveController.run_with_power_and_direction(velocity, gain);
   } else { // Right edge
-    driveController.run_with_speed_and_direction(velocity, -gain);
+    driveController.run_with_power_and_direction(velocity, -gain);
    }
 }
 

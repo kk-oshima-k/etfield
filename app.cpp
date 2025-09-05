@@ -4,6 +4,7 @@
 #include "ETRobo/ETRobo.h"
 #include "Device/DriveController.h"
 #include "Device/ColorSensorController.h"
+#include "Device/UltrasonicSensorController.h"
 #include "ForceSensor.h"
 #include "Clock.h"  
 
@@ -29,7 +30,9 @@ void main_task(intptr_t unused) {
 
   DriveController driveController;
   ColorSensorController colorSensorController;
-  etrobo = new ETRobo(driveController, colorSensorController);
+  UltrasonicSensorController ultrasonicSensorController;
+  etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
+  etrobo->initialize();
 
   sta_cyc(ETROBO_CYC);
 
@@ -49,4 +52,3 @@ void main_task(intptr_t unused) {
   fclose(fp);
   ext_tsk(); // <5>
 }
-

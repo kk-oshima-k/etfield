@@ -10,6 +10,7 @@ public:
   ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController);
   ~ETRobo();
 
+  void initialize();
   int process();
   void terminate();
 

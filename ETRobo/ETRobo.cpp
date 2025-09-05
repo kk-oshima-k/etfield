@@ -15,6 +15,10 @@ ETRobo::~ETRobo() {
   }
 }
 
+void ETRobo::initialize(){
+  scenarios[current_scenario_index]->enter_scenario();
+}
+
 int ETRobo::process() {
   int next_scenario_index = process_scenario(); // Process the current scenario
   if(switch_scenario(next_scenario_index) == -1) // Switch to the next scenario based on the result
@@ -43,8 +47,13 @@ int ETRobo::switch_scenario(int scenario_index) {
     current_scenario_index = -1; // End the scenario if the scene index is invalid
     return -1; // Invalid scene index
   }
-  current_scenario_index = scenario_index;
-  return previous_scenario_index; // Return the previous scenario index
+  if(current_scenario_index != scenario_index){
+    int previous_scenario_index = current_scenario_index;
+    current_scenario_index = scenario_index;
+    scenarios[current_scenario_index]->enter_scenario();
+    return previous_scenario_index; // Return the previous scenario index
+  }
+  return current_scenario_index;
 }
 
 void ETRobo::terminate_scenario() {
