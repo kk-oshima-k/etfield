@@ -28,7 +28,9 @@ int Scenario1::Scenario1::process_scene() {
 int Scenario1::switch_scene(int scene_index){
     if (current_scene_index != scene_index){
         printf("Switch to Scenario 1 / Scene %d\n", scene_index);
+#ifdef MAKE_RASPIKE // not sim
         fprintf(fp, "Switch to Scenario 1 / Scene %d\n", scene_index);
+#endif
     }
     return Scenario::switch_scene(scene_index);
 }
