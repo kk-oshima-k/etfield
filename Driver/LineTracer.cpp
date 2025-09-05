@@ -55,9 +55,9 @@ int LineTracer::calculate_PID_gain() {
   
   // PID制御の出力を計算
   int output = pidParameters.kp * error + pidParameters.ki * integral + pidParameters.kd * derivative;
-  
-  printf("%4d %4d %4d %3d %3d %4d %4d %4d %7d %4d %5d \n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
-  fprintf(fp, "%3d %3d %3d %3d %3d %3d %4d %4d %d %d %d\n",rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+  //   , 
+  printf("r%4d g%4d b%4d h%3d s%3d v%4d e%4d d%4d i%7d o%4d d%5d \n", rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
+  fprintf(fp, "%3d %3d %3d %3d %3d %3d %4d %4d %d %d %d\n", rgb.r, rgb.g, rgb.b, hsv.h, hsv.s, hsv.v, error, derivative, integral, output, driveController.get_distance());
   // 前回の偏差を保存
   previousError = error;
   

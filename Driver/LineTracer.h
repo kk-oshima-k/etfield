@@ -27,7 +27,7 @@ private:
   // PID制御用の変数
   int target; // 目標値
   int previousError;
-  double integral;
+  int integral;
 
 #ifndef MAKE_RASPIKE
   bool simup;
