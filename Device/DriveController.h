@@ -11,7 +11,9 @@ class DriveController {
 public:
   DriveController();
   void run_with_motor_speeds(int left_speed, int right_speed);
+  void run_with_motor_powers(int left_power, int right_power);
   void run_with_speed_and_direction(int velocity, int angular_velocity);
+  void run_with_power_and_direction(int velocity, int angular_velocity);
   void stop();
 
   int get_distance() const;
@@ -37,8 +39,8 @@ private:
   Motor leftWheel;
   Motor rightWheel;
 
-  const double wheel_diameter = 5.6; // cm
-  const double wheel_base = 11.2; // cm
+  const double wheel_diameter = 5.595; // cm
+  const double wheel_base = 11.16; // cm
 };
 
 #endif // DRIVE_CONTROLLER_H

@@ -15,6 +15,7 @@ public:
 
 private:
   int angularVelocity;
+  int oldV;
 };
 
 #endif // ROTATION_DRIVER_H

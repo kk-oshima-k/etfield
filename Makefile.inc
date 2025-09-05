@@ -3,16 +3,19 @@ mkfile_path := $(dir $(lastword $(MAKEFILE_LIST)))
 APPL_CXXOBJS += \
 	DriveController.o \
 	ColorSensorController.o \
+	UltrasonicSensorController.o \
 	Driver.o \
 	LineTracer.o \
 	StraightDriver.o \
 	RotationDriver.o \
 	Detector.o \
 	ColorDetector.o \
+	UltrasonicDetector.o \
 	DistanceDetector.o \
 	AngleDetector.o \
 	Scene.o \
 	StraightScene.o \
+	FindBottleWithLineTraceScene.o \
 	LineTraceScene.o \
 	RotationScene.o \
 	Scenario.o \

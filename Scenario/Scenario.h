@@ -4,14 +4,16 @@
 #include <vector>
 #include "../Device/DriveController.h"
 #include "../Device/ColorSensorController.h"
+#include "../Device/UltrasonicSensorController.h"
 #include "../Scene/Scene.h"
 
 class Scenario {
 public:
-  Scenario(DriveController &driveController, const ColorSensorController &colorSensorController);
+  Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
   virtual ~Scenario();
 
 public:
+  void enter_scenario();
   int process_scenario();
   void terminate_scenario();
 

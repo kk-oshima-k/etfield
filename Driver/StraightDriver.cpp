@@ -1,4 +1,5 @@
 #include "StraightDriver.h"
+#include <cstdio>
 
 StraightDriver::StraightDriver(DriveController &driveController, int velocity) :
   Driver(driveController),
@@ -6,5 +7,6 @@ StraightDriver::StraightDriver(DriveController &driveController, int velocity) :
 }
 
 void StraightDriver::drive() {
-  driveController.run_with_speed_and_direction(velocity, 0);
+  driveController.run_with_power_and_direction(velocity, 0);
+  printf("%3d\n", driveController.get_distance());
 }

@@ -1,6 +1,6 @@
 #include "Scenario.h"
 
-Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController) :
+Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scene_index(0)
 {
 }
@@ -11,6 +11,10 @@ Scenario::~Scenario() {
     delete scenes.back(); // Clean up the allocated scenes
     scenes.pop_back();
   }
+}
+
+void Scenario::enter_scenario() {
+  scenes[current_scene_index]->enter_scene();
 }
 
 int Scenario::process_scenario() {

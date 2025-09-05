@@ -20,17 +20,30 @@ void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
   rightWheel.setSpeed(right_speed);
 
 }
+void DriveController::run_with_motor_powers(int left_power, int right_power) {
+  leftWheel.setPower(left_power);
+  rightWheel.setPower(right_power);
+
+}
 
 /**
  * int velocity : cm/s
  * int angular_velocity : °/s
  */
 void DriveController::run_with_speed_and_direction(int velocity, int angular_velocity) {
-  int left_speed = calculate_velocity2rotation(velocity) - angular_velocity;
-  int right_speed = calculate_velocity2rotation(velocity) + angular_velocity;
+  int left_speed = velocity - angular_velocity;
+  int right_speed = velocity + angular_velocity;
 
   run_with_motor_speeds(left_speed, right_speed);
 }
+
+void DriveController::run_with_power_and_direction(int velocity, int angular_velocity) {
+  int left_power = velocity - angular_velocity;
+  int right_power = velocity + angular_velocity;
+
+  run_with_motor_powers(left_power, right_power);
+}
+
 void DriveController::stop() {
   leftWheel.stop();
   rightWheel.stop();
