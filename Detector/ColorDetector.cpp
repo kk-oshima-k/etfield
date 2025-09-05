@@ -5,7 +5,7 @@ const LineColorThresholds ColorDetector::WHITE_THRESHOLD={
   {  0,   0,   0}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::BLACK_THRESHOLD={
-  {359,  40,  40},   // upperThreshold
+  {359,  40,  54},   // upperThreshold
   {  0,   0,   0}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::RED_THRESHOLD={
@@ -13,8 +13,8 @@ const LineColorThresholds ColorDetector::RED_THRESHOLD={
   {330, 200, 200}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::BLUE_THRESHOLD={
-  {235, 127, 85},   // upperThreshold
-  {175, 67, 45}    // lowerThreshold
+  {235, 150, 40},   // upperThreshold
+  {175, 100, 20}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::GRAY_THRESHOLD={
   {359,  80,  80},   // upperThreshold

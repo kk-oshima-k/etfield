@@ -9,11 +9,11 @@ Scenario2::Scenario2(DriveController &driveController, const ColorSensorControll
     scenes.push_back(new Scenario2Scene1(driveController, colorSensorController));
     scenes.push_back(new Scenario2Scene2(driveController));
     scenes.push_back(new Scenario2Scene3(driveController, colorSensorController));
-//    scenes.push_back(new Scenario2Scene4(driveController));
-//    scenes.push_back(new Scenario2Scene5(driveController, colorSensorController));
-//    scenes.push_back(new Scenario2Scene6(driveController));
-//    scenes.push_back(new Scenario2Scene7(driveController, colorSensorController));
-//    scenes.push_back(new Scenario2Scene8(driveController));
+    scenes.push_back(new Scenario2Scene4(driveController));
+    scenes.push_back(new Scenario2Scene5(driveController, colorSensorController));
+    scenes.push_back(new Scenario2Scene6(driveController));
+    scenes.push_back(new Scenario2Scene7(driveController, colorSensorController));
+    scenes.push_back(new Scenario2Scene8(driveController));
 //    scenes.push_back(new Scenario2Scene9(driveController, colorSensorController));
 //    scenes.push_back(new Scenario2Scene10(driveController));
 //    scenes.push_back(new Scenario2Scene11(driveController, colorSensorController));
