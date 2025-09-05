@@ -5,8 +5,8 @@
 extern FILE *fp;
 #endif
 
-Scenario3::Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController) :
-    Scenario(driveController, colorSensorController)
+Scenario3::Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
+    Scenario(driveController, colorSensorController, ultrasonicSensorController)
 {
     scenes.push_back(new Scenario3Scene1(driveController, colorSensorController));
     scenes.push_back(new Scenario3Scene2(driveController));

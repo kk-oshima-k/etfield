@@ -76,10 +76,10 @@ int DriveController::calculate_distance() const{
 
 int DriveController::calculate_angle() const{
 
-  int angle = wheel_diameter * degrees_to_radians(rightWheel.getCount() - leftWheel.getCount()) / wheel_base;
-  printf("%3d\n", angle);
+  double angle = wheel_diameter * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_base);
+  printf("%3.0f\n", angle);
 #ifdef MAKE_RASPIKE // not sim
-  fprintf(fp, "%3d\n", angle);
+  fprintf(fp, "%3.0f\n", angle);
 #endif
   return angle;
 }

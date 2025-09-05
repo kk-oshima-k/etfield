@@ -17,7 +17,6 @@ class FindBottleWithLineTraceScene : public Scene {
 public:
   FindBottleWithLineTraceScene(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController, 
                                int velocity = 100, bool rightEdge = false, const PIDParameters &pidParameters = {1.0, 0.1, 0.01}, int target = 127,
-                               LineColor color = LineColor::LINE_COLOR_NONE,
                                int thresholdDistance = 100,
                                int bottleDistance = 100);
 

@@ -1,4 +1,9 @@
 #include "Scenario.h"
+#include <cstdio>
+
+#ifdef MAKE_RASPIKE // not sim
+extern FILE *fp;
+#endif
 
 Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scene_index(0)
@@ -36,6 +41,10 @@ int Scenario::switch_scene(int scene_index) {
     return -1; // Invalid scene index
   }
   if(current_scene_index != scene_index){
+    printf("Switch to Secario1Scene%d\n", scene_index);
+#ifdef MAKE_RASPIKE // not sim
+    fprintf(fp, "Switch to Secario1Scene%d\n", scene_index);
+#endif
     int previous_scene_index = current_scene_index;
     current_scene_index = scene_index;
     scenes[current_scene_index]->enter_scene(); // Enter the new scene

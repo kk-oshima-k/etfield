@@ -121,7 +121,7 @@ public:
 
 class Scenario2 : public Scenario {
 public:
-  Scenario2(DriveController &driveController, const ColorSensorController &colorSensorController);
+  Scenario2(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
 
   int process_scene() override;
 

@@ -43,7 +43,7 @@ void main_task(intptr_t unused) {
 #ifdef MAKE_RASPIKE // not sim
   time_t t = time(NULL);
   strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
-  sprintf(path, "/home/kklab/etrobo/workspace/etfield/log/%s.txt", datetime);
+  sprintf(path, "/home/kklab/RasPike-ART/sdk/workspace/etfield/log/%s.txt", datetime);
   printf("test:%s\n", path);
   fp = fopen(path, "a");
 #endif

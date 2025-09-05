@@ -5,6 +5,7 @@
 #include "../../Scene/LineTraceScene.h"
 #include "../../Scene/StraightScene.h"
 #include "../../Scene/RotationScene.h"
+#include "../../Scene/FindBottleWithLineTraceScene.h"
 
 class Scenario3Scene1 : public LineTraceScene {
 public:
@@ -111,7 +112,7 @@ public:
 
 class Scenario3 : public Scenario {
 public:
-  Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController);
+  Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
 
   int process_scene() override;
 
