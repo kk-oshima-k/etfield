@@ -1,6 +1,11 @@
 #include "Scenario.h"
+#include <cstdio>
 
-Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController) :
+#ifdef MAKE_RASPIKE // not sim
+extern FILE *fp;
+#endif
+
+Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scene_index(0)
 {
 }
@@ -31,11 +36,15 @@ void Scenario::terminate_scenario() {
 }
 
 int Scenario::switch_scene(int scene_index) {
-  if (scene_index < 0 || scene_index >= scenes.size()) {
+  if (scene_index < 0 || scene_index >= (int)scenes.size()) {
     current_scene_index = -1; // End the scenario if the scene index is invalid
     return -1; // Invalid scene index
   }
   if(current_scene_index != scene_index){
+    printf("Switch to Secario1Scene%d\n", scene_index);
+#ifdef MAKE_RASPIKE // not sim
+    fprintf(fp, "Switch to Secario1Scene%d\n", scene_index);
+#endif
     int previous_scene_index = current_scene_index;
     current_scene_index = scene_index;
     scenes[current_scene_index]->enter_scene(); // Enter the new scene
@@ -45,7 +54,7 @@ int Scenario::switch_scene(int scene_index) {
 }
 
 void Scenario::terminate_scene() {
-  if (current_scene_index >= 0 && current_scene_index < scenes.size()) {
+  if (current_scene_index >= 0 && current_scene_index < (int)scenes.size()) {
     scenes[current_scene_index]->terminate_scene(); // Terminate the current scene
   }
 }

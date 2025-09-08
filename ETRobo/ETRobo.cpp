@@ -1,10 +1,12 @@
 #include "ETRobo.h"
 #include <cstdio>
 
-ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController) :
+ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scenario_index(0)
 {
-    scenarios.push_back(new Scenario2(driveController, colorSensorController));
+    scenarios.push_back(new Scenario1(driveController, colorSensorController, ultrasonicSensorController));
+    scenarios.push_back(new Scenario2(driveController, colorSensorController, ultrasonicSensorController));
+    scenarios.push_back(new Scenario3(driveController, colorSensorController, ultrasonicSensorController));
 }
 
 ETRobo::~ETRobo() {
@@ -21,6 +23,7 @@ void ETRobo::initialize(){
 
 int ETRobo::process() {
   int next_scenario_index = process_scenario(); // Process the current scenario
+  printf("e%d\n", next_scenario_index);
   if(switch_scenario(next_scenario_index) == -1) // Switch to the next scenario based on the result
     return -1;
   return 0;
@@ -35,15 +38,14 @@ int ETRobo::process_scenario() {
   int scenario_result = scenarios[current_scenario_index]->process_scenario();
   if (scenario_result == 0){
     return current_scenario_index;
-  }else if (scenario_result == 1 && current_scenario_index < scenarios.size() - 1) {
+  }else if (scenario_result == 1 && current_scenario_index < (int)scenarios.size() - 1) {
     return current_scenario_index + 1; // Move to the next scenario
   }
   return -1;
 }
 
 int ETRobo::switch_scenario(int scenario_index) {
-  int previous_scenario_index = current_scenario_index;
-  if (scenario_index < 0 || scenario_index >= scenarios.size()) {
+  if (scenario_index < 0 || scenario_index >= (int)scenarios.size()) {
     current_scenario_index = -1; // End the scenario if the scene index is invalid
     return -1; // Invalid scene index
   }

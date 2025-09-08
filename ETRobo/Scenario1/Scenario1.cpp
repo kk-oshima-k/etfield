@@ -1,0 +1,39 @@
+#include "Scenario1.h"
+#include <cstdio>
+
+#ifdef MAKE_RASPIKE // not sim
+extern FILE *fp;
+#endif
+
+Scenario1::Scenario1(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
+    Scenario(driveController, colorSensorController, ultrasonicSensorController)
+{
+    scenes.push_back(new Scenario1Scene1(driveController, colorSensorController, ultrasonicSensorController));
+    scenes.push_back(new Scenario1Scene2(driveController,colorSensorController));
+    scenes.push_back(new Scenario1Scene3(driveController));
+    scenes.push_back(new Scenario1Scene4(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene5(driveController));
+    scenes.push_back(new Scenario1Scene6(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene7(driveController));
+    scenes.push_back(new Scenario1Scene8(driveController, colorSensorController));
+}
+
+int Scenario1::Scenario1::process_scene() {
+    int scene_result = scenes[current_scene_index]->process_scene();
+    if(scene_result == 0){
+        return current_scene_index; // Stay in the current scene
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1) {
+        return current_scene_index + 1; // Move to the next scene
+    }
+    return -1;
+}
+
+int Scenario1::switch_scene(int scene_index){
+    if (current_scene_index != scene_index){
+        printf("Switch to Scenario 1 / Scene %d\n", scene_index);
+#ifdef MAKE_RASPIKE // not sim
+        fprintf(fp, "Switch to Scenario 1 / Scene %d\n", scene_index);
+#endif
+    }
+    return Scenario::switch_scene(scene_index);
+}

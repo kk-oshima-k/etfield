@@ -1,19 +1,23 @@
 #include "UltrasonicDetector.h"
+#include <cstdio>
 
-UltrasonicDetector::UltrasonicDetector(const UltrasonicSensorController &ultrasonicSensorController, int thresholdDistance) :
+UltrasonicDetector::UltrasonicDetector(const UltrasonicSensorController &ultrasonicSensorController, int bottleDistance) :
   Detector(),
   ultrasonicSensorController(ultrasonicSensorController),
-  thresholdDistance(thresholdDistance) {
+  bottleDistance(bottleDistance) {
 }
 
 bool UltrasonicDetector::detect() {
   int distance = ultrasonicSensorController.get_distance();
-  if (thresholdDistance > 0){
-    return thresholdDistance < distance ; // Return true if detected within threshold, else false
-  } else if(thresholdDistance < 0){
-    return distance < thresholdDistance ; // Return true if detected within threshold, else false
+  printf("%d\n", distance);
+  if (distance < 0){
+    return false;
+  } else if (bottleDistance > 0){
+    return bottleDistance > distance ; // Return true if detected within threshold, else false
+  } else if(bottleDistance < 0){
+    return -bottleDistance < distance; // Return true if detected within threshold, else false
   } else {
-    return true; // thresholdDistance == 0 has no restrictions
+    return true; // bottleDistance == 0 has no restrictions
   }
 }
 

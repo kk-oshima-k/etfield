@@ -13,7 +13,9 @@
 
 ETRobo *etrobo;
 
+#ifdef MAKE_RASPIKE // not sim
 FILE *fp;
+#endif
 
 using namespace spikeapi;
 
@@ -31,17 +33,20 @@ void main_task(intptr_t unused) {
   DriveController driveController;
   ColorSensorController colorSensorController;
   UltrasonicSensorController ultrasonicSensorController;
-  etrobo = new ETRobo(driveController, colorSensorController);
+  etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
   etrobo->initialize();
 
   sta_cyc(ETROBO_CYC);
 
+#ifdef MAKE_RASPIKE // not sim
   char datetime[64];
   char path[256];
   time_t t = time(NULL);
   strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
-  sprintf(path, "/home/kklab/%s.txt", datetime);
+  sprintf(path, "/home/kklab/RasPike-ART/sdk/workspace/etfield/log/%s.txt", datetime);
+  printf("test:%s\n", path);
   fp = fopen(path, "a");
+#endif
 
   while (!forceSensor.isTouched()) {
       clock.sleep(duration);
@@ -49,6 +54,8 @@ void main_task(intptr_t unused) {
 
   stp_cyc(ETROBO_CYC);
   etrobo->terminate();
+#ifdef MAKE_RASPIKE // not sim
   fclose(fp);
+#endif
   ext_tsk(); // <5>
 }

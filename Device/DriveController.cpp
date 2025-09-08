@@ -1,7 +1,9 @@
 #include "DriveController.h"
 #include <cstdio>
 
+#ifdef MAKE_RASPIKE // not sim
 extern FILE *fp;
+#endif
 
 DriveController::DriveController() :
   leftWheel(EPort::PORT_B, Motor::EDirection::COUNTERCLOCKWISE, true),
@@ -76,6 +78,8 @@ int DriveController::calculate_angle() const{
 
   double angle = wheel_diameter * (rightWheel.getCount() - leftWheel.getCount()) / (2.0 * wheel_base);
   printf("%3.0f\n", angle);
+#ifdef MAKE_RASPIKE // not sim
   fprintf(fp, "%3.0f\n", angle);
+#endif
   return angle;
 }

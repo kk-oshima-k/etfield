@@ -9,7 +9,7 @@
 
 class Scenario {
 public:
-  Scenario(DriveController &driveController, const ColorSensorController &colorSensorController);
+  Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
   virtual ~Scenario();
 
 public:
