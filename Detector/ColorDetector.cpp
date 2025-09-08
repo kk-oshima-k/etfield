@@ -1,11 +1,11 @@
 #include "ColorDetector.h"
 
 const LineColorThresholds ColorDetector::WHITE_THRESHOLD={
-  {  0,   0,   0},   // upperThreshold
-  {  0,   0,   0}    // lowerThreshold
+  {359,  20, 100},   // upperThreshold
+  {  0,   0,  80}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::BLACK_THRESHOLD={
-  {359,  40,  54},   // upperThreshold
+  {359,  40,  70},   // upperThreshold
   {  0,   0,   0}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::RED_THRESHOLD={
@@ -13,8 +13,8 @@ const LineColorThresholds ColorDetector::RED_THRESHOLD={
   {330, 200, 200}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::BLUE_THRESHOLD={
-  {235, 150, 40},   // upperThreshold
-  {175, 100, 20}    // lowerThreshold
+  {235, 120, 60},   // upperThreshold
+  {190, 50, 30}    // lowerThreshold
 };
 const LineColorThresholds ColorDetector::GRAY_THRESHOLD={
   {359,  80,  80},   // upperThreshold
