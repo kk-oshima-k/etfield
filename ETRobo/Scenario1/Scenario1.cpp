@@ -7,12 +7,13 @@ Scenario1::Scenario1(DriveController &driveController, const ColorSensorControll
     Scenario(driveController, colorSensorController, ultrasonicSensorController)
 {
     scenes.push_back(new Scenario1Scene1(driveController, colorSensorController, ultrasonicSensorController));
-    scenes.push_back(new Scenario1Scene2(driveController));
-    scenes.push_back(new Scenario1Scene3(driveController, colorSensorController));
-    scenes.push_back(new Scenario1Scene4(driveController));
-    scenes.push_back(new Scenario1Scene5(driveController, colorSensorController));
-    scenes.push_back(new Scenario1Scene6(driveController));
-    scenes.push_back(new Scenario1Scene7(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene2(driveController,colorSensorController));
+    scenes.push_back(new Scenario1Scene3(driveController));
+    scenes.push_back(new Scenario1Scene4(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene5(driveController));
+    scenes.push_back(new Scenario1Scene6(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene7(driveController));
+    scenes.push_back(new Scenario1Scene8(driveController, colorSensorController));
 }
 
 int Scenario1::Scenario1::process_scene() {
