@@ -23,6 +23,7 @@ Scenario3::Scenario3(DriveController &driveController, const ColorSensorControll
     scenes.push_back(new Scenario3Scene13(driveController));
     scenes.push_back(new Scenario3Scene14(driveController, colorSensorController));
     scenes.push_back(new Scenario3Scene15(driveController));
+    scenes.push_back(new Scenario3Scene16(driveController, colorSensorController));
 }
 
 int Scenario3::Scenario3::process_scene() {
