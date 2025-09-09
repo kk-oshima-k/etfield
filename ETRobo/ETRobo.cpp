@@ -8,8 +8,8 @@ extern FILE *fp;
 ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scenario_index(0)
 {
-    scenarios.push_back(new Scenario1(driveController, colorSensorController, ultrasonicSensorController));
-    scenarios.push_back(new Scenario2(driveController, colorSensorController, ultrasonicSensorController));
+    // scenarios.push_back(new Scenario1(driveController, colorSensorController, ultrasonicSensorController));
+    // scenarios.push_back(new Scenario2(driveController, colorSensorController, ultrasonicSensorController));
     scenarios.push_back(new Scenario3(driveController, colorSensorController, ultrasonicSensorController));
 }
 
