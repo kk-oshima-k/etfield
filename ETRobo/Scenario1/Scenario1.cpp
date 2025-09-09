@@ -1,7 +1,9 @@
 #include "Scenario1.h"
 #include <cstdio>
 
+#ifdef MAKE_RASPIKE // not sim
 extern FILE *fp;
+#endif
 
 Scenario1::Scenario1(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
     Scenario(driveController, colorSensorController, ultrasonicSensorController)
