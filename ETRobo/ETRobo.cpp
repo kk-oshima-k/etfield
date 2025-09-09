@@ -1,6 +1,10 @@
 #include "ETRobo.h"
 #include <cstdio>
 
+#ifdef MAKE_RASPIKE // not sim
+extern FILE *fp;
+#endif
+
 ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scenario_index(0)
 {
@@ -25,7 +29,7 @@ int ETRobo::process() {
   int next_scenario_index = process_scenario(); // Process the current scenario
   printf("e%d\n", next_scenario_index);
   if(switch_scenario(next_scenario_index) == -1) // Switch to the next scenario based on the result
-    return -1;
+    return 1;
   return 0;
 }
 
@@ -44,12 +48,17 @@ int ETRobo::process_scenario() {
   return -1;
 }
 
+
 int ETRobo::switch_scenario(int scenario_index) {
   if (scenario_index < 0 || scenario_index >= (int)scenarios.size()) {
     current_scenario_index = -1; // End the scenario if the scene index is invalid
     return -1; // Invalid scene index
   }
   if(current_scenario_index != scenario_index){
+    printf("Switch to Scenario%d\n", current_scenario_index);
+#ifdef MAKE_RASPIKE // not sim
+    fprintf(fp, "Switch to Scenario%d\n", current_scenario_index);
+#endif
     int previous_scenario_index = current_scenario_index;
     current_scenario_index = scenario_index;
     scenarios[current_scenario_index]->enter_scenario();

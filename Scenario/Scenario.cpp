@@ -25,7 +25,7 @@ void Scenario::enter_scenario() {
 int Scenario::process_scenario() {
   int next_scene_index = process_scene(); // Process the current scene
   if(switch_scene(next_scene_index) == -1){ // Switch to the next scene based on the result
-    return -1;
+    return 1;
   }
   return 0;
 }
@@ -41,9 +41,9 @@ int Scenario::switch_scene(int scene_index) {
     return -1; // Invalid scene index
   }
   if(current_scene_index != scene_index){
-    printf("Switch to Secario1Scene%d\n", scene_index);
+    printf("Switch to Scene%d\n", scene_index);
 #ifdef MAKE_RASPIKE // not sim
-    fprintf(fp, "Switch to Secario1Scene%d\n", scene_index);
+    fprintf(fp, "Switch to Scene%d\n", scene_index);
 #endif
     int previous_scene_index = current_scene_index;
     current_scene_index = scene_index;
