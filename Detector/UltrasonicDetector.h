@@ -8,14 +8,14 @@ using namespace spikeapi;
 
 class UltrasonicDetector : public Detector {
 public:
-  UltrasonicDetector(const UltrasonicSensorController &ultrasonicSensorController, int thresholdDistance);
+  UltrasonicDetector(const UltrasonicSensorController &ultrasonicSensorController, int bottleDistance);
 
   bool detect() override;
 
 private:
   const UltrasonicSensorController &ultrasonicSensorController;
 
-  int thresholdDistance;
+  int bottleDistance;
 };
 
 #endif // ULTRASONIC_DETECTOR_H

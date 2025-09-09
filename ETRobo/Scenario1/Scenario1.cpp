@@ -9,19 +9,20 @@ Scenario1::Scenario1(DriveController &driveController, const ColorSensorControll
     Scenario(driveController, colorSensorController, ultrasonicSensorController)
 {
     scenes.push_back(new Scenario1Scene1(driveController, colorSensorController, ultrasonicSensorController));
-    scenes.push_back(new Scenario1Scene2(driveController));
-    scenes.push_back(new Scenario1Scene3(driveController, colorSensorController));
-    scenes.push_back(new Scenario1Scene4(driveController));
-    scenes.push_back(new Scenario1Scene5(driveController, colorSensorController));
-    scenes.push_back(new Scenario1Scene6(driveController));
-    scenes.push_back(new Scenario1Scene7(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene2(driveController,colorSensorController));
+    scenes.push_back(new Scenario1Scene3(driveController));
+    scenes.push_back(new Scenario1Scene4(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene5(driveController));
+    scenes.push_back(new Scenario1Scene6(driveController, colorSensorController));
+    scenes.push_back(new Scenario1Scene7(driveController));
+    scenes.push_back(new Scenario1Scene8(driveController, colorSensorController));
 }
 
 int Scenario1::Scenario1::process_scene() {
     int scene_result = scenes[current_scene_index]->process_scene();
     if(scene_result == 0){
         return current_scene_index; // Stay in the current scene
-    } else if (scene_result == 1 && current_scene_index < scenes.size() - 1) {
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1) {
         return current_scene_index + 1; // Move to the next scene
     }
     return -1;

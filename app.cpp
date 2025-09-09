@@ -38,9 +38,9 @@ void main_task(intptr_t unused) {
 
   sta_cyc(ETROBO_CYC);
 
+#ifdef MAKE_RASPIKE // not sim
   char datetime[64];
   char path[256];
-#ifdef MAKE_RASPIKE // not sim
   time_t t = time(NULL);
   strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
   sprintf(path, "/home/kklab/RasPike-ART/sdk/workspace/etfield/log/%s.txt", datetime);
@@ -59,4 +59,3 @@ void main_task(intptr_t unused) {
 #endif
   ext_tsk(); // <5>
 }
-
