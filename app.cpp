@@ -34,9 +34,8 @@ void main_task(intptr_t unused) {
   ColorSensorController colorSensorController;
   UltrasonicSensorController ultrasonicSensorController;
   etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
-  etrobo->initialize();
 
-  #ifdef MAKE_RASPIKE // not sim
+#ifdef MAKE_RASPIKE // not sim
   char datetime[64];
   char path[256];
   time_t t = time(NULL);
@@ -46,9 +45,22 @@ void main_task(intptr_t unused) {
   fp = fopen(path, "a");
 #endif
 
-  // while (!forceSensor.isTouched()) {
-  //     clock.sleep(duration);
-  // }
+  while (!forceSensor.isTouched()) {
+      clock.sleep(duration);
+  }
+  while (forceSensor.isTouched()) {
+      clock.sleep(duration);
+  }
+
+  char mes[256];
+  time_t mest = time(NULL);
+  strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&mest));
+  sprintf(mes, "Start! %s\n", datetime);
+  printf("%s", mes);
+#ifdef MAKE_RASPIKE // not sim
+  fprintf(fp, "%s", mes);
+#endif
+  etrobo->initialize();
 
   sta_cyc(ETROBO_CYC);
 

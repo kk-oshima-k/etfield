@@ -21,6 +21,11 @@ void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
 
 }
 void DriveController::run_with_motor_powers(int left_power, int right_power) {
+  if(left_power > 0){
+    left_power += 1;
+  }else if(left_power < 0){
+    left_power -= 1;
+  }
   leftWheel.setPower(left_power);
   rightWheel.setPower(right_power);
 
