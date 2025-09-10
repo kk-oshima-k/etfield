@@ -8,22 +8,27 @@ extern FILE *fp;
 Scenario3::Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
     Scenario(driveController, colorSensorController, ultrasonicSensorController)
 {
-    scenes.push_back(new Scenario3Scene1(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene1(driveController, colorSensorController, ultrasonicSensorController));
     scenes.push_back(new Scenario3Scene2(driveController));
     scenes.push_back(new Scenario3Scene3(driveController, colorSensorController));
     scenes.push_back(new Scenario3Scene4(driveController, colorSensorController));
     scenes.push_back(new Scenario3Scene5(driveController));
     scenes.push_back(new Scenario3Scene6(driveController, colorSensorController));
-    scenes.push_back(new Scenario3Scene7(driveController, colorSensorController));
-    scenes.push_back(new Scenario3Scene8(driveController));
-    scenes.push_back(new Scenario3Scene9(driveController, colorSensorController));
-    scenes.push_back(new Scenario3Scene10(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene7(driveController));
+    scenes.push_back(new Scenario3Scene8(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene9(driveController));
+    scenes.push_back(new Scenario3Scene10(driveController, colorSensorController, ultrasonicSensorController));
     scenes.push_back(new Scenario3Scene11(driveController));
     scenes.push_back(new Scenario3Scene12(driveController, colorSensorController));
-    scenes.push_back(new Scenario3Scene13(driveController));
-    scenes.push_back(new Scenario3Scene14(driveController, colorSensorController));
-    scenes.push_back(new Scenario3Scene15(driveController));
-    scenes.push_back(new Scenario3Scene16(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene13(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene14(driveController));
+    scenes.push_back(new Scenario3Scene15(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene16(driveController));
+    scenes.push_back(new Scenario3Scene17(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene18(driveController));
+    scenes.push_back(new Scenario3Scene19(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene20(driveController, colorSensorController));
+    scenes.push_back(new Scenario3Scene21(driveController, colorSensorController));
 }
 
 int Scenario3::Scenario3::process_scene() {
