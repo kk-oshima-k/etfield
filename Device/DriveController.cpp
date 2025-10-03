@@ -11,6 +11,12 @@ DriveController::DriveController() :
 
 }
 
+// DriveController::DriveController() :
+//   leftWheel(EPort::PORT_A, Motor::EDirection::CLOCKWISE, true),
+//   rightWheel(EPort::PORT_B, Motor::EDirection::COUNTERCLOCKWISE, true){
+
+// }
+
 /**
  * int left_speed : °/s
  * int right_speed : °/s
@@ -21,15 +27,26 @@ void DriveController::run_with_motor_speeds(int left_speed, int right_speed) {
 
 }
 void DriveController::run_with_motor_powers(int left_power, int right_power) {
-  if(left_power > 0){
-    left_power += 1;
-  }else if(left_power < 0){
-    left_power -= 1;
+  if(80 > left_power > 0){
+    left_power += 0;
+  }else if(left_power >= 80){
+    left_power += 2;
   }
   leftWheel.setPower(left_power);
   rightWheel.setPower(right_power);
-
+  printf("powerl %d powerr %d\n", left_power, right_power);
 }
+
+// void DriveController::run_with_motor_powers(int left_power, int right_power) {
+//   if(80 > right_power > 0){
+//     right_power += 0;
+//   }else if(right_power >= 80){
+//     right_power += 2;
+//   }
+//   leftWheel.setPower(left_power);
+//   rightWheel.setPower(right_power);
+//   printf("powerl %d powerr %d\n", left_power, right_power);
+// }
 
 /**
  * int velocity : cm/s

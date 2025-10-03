@@ -12,6 +12,10 @@ Scenario1::Scenario1(DriveController &driveController, const ColorSensorControll
     // scenes.push_back(new RotationScene(driveController, -60, -90));
     // scenes.push_back(new RotationScene(driveController, 60, 90));
     // scenes.push_back(new StraightScene(driveController, colorSensorController, 0, LineColor::LINE_COLOR_NONE, 0));
+    // scenes.push_back(new LineTraceScene(driveController, colorSensorController, 100, true, {0.6, 0.015, 1.5}, 56, LINE_COLOR_ANY, 174));
+    // scenes.push_back(new LineTraceScene(driveController, colorSensorController, 60, true, {0.7, 0.01, 1.0}, 56, LINE_COLOR_ANY, 42));
+    // scenes.push_back(new LineTraceScene(driveController, colorSensorController, 100, true, {0.6, 0.015, 1.5}, 56, LINE_COLOR_ANY, 50));
+    // scenes.push_back(new LineTraceScene(driveController, colorSensorController, 0, true, {0, 0, 0}, 54, LINE_COLOR_NONE, 10));
     scenes.push_back(new Scenario1Scene1(driveController, colorSensorController));
     scenes.push_back(new Scenario1Scene2(driveController, colorSensorController, ultrasonicSensorController));
     scenes.push_back(new Scenario1Scene3(driveController,colorSensorController));
