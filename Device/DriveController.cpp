@@ -66,6 +66,20 @@ void DriveController::run_with_power_and_direction(int velocity, int angular_vel
   run_with_motor_powers(left_power, right_power);
 }
 
+void DriveController::run_with_power_and_Rotation(int velocity, int angular_velocity) {
+  int right_power;
+  int left_power;
+  if(angular_velocity > 0){
+    right_power = angular_velocity;
+    left_power = velocity;
+  }else{
+    right_power = velocity;
+    left_power = -angular_velocity;
+  }
+
+  run_with_motor_powers(left_power, right_power);
+}
+
 void DriveController::stop() {
   leftWheel.stop();
   rightWheel.stop();
