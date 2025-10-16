@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "../Common/Common.h"
 #include "../Device/DriveController.h"
+#include "../Device/AngleController.h"
 #include "../Driver/RotationDriver.h"
 #include "../Detector/AngleDetector.h"
 
@@ -11,7 +12,7 @@ using namespace spikeapi;
 
 class RotationScene : public Scene {
 public:
-  RotationScene(DriveController &driveController,
+  RotationScene(AngleController &angleController, DriveController &driveController,
                  int angularVelocity = 100,
                  int thresholdAngle = 90);
 

@@ -35,8 +35,8 @@ public:
 };
 class Scenario1Scene4 : public RotationScene {
 public:
-  Scenario1Scene4(DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -30) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario1Scene4(AngleController &angleController, DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -30) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario1Scene5 : public StraightScene {
 public:
@@ -48,8 +48,8 @@ public:
 };
 class Scenario1Scene6 : public RotationScene {
 public:
-  Scenario1Scene6(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 60) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario1Scene6(AngleController &angleController, DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 60) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario1Scene7 : public StraightScene {
 public:
@@ -61,8 +61,8 @@ public:
 };
 class Scenario1Scene8 : public RotationScene {
 public:
-  Scenario1Scene8(DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -30) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario1Scene8(AngleController &angleController, DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -30) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario1Scene9 : public LineTraceScene {
 public:
@@ -109,7 +109,7 @@ public:
 
 class Scenario1 : public Scenario {
 public:
-  Scenario1(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
+  Scenario1(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
 
   int process_scene() override;
 

@@ -2,19 +2,19 @@
 #define ANGLE_DETECTOR_H
 
 #include "Detector.h"
-#include "../Device/DriveController.h"
+#include "../Device/AngleController.h"
 
 using namespace spikeapi;
 
 class AngleDetector : public Detector {
 public:
-  AngleDetector(DriveController &driveController, int thresholdAngle);
+  AngleDetector(AngleController &angleController, int thresholdAngle);
 
   void reset_angle();
   bool detect() override;
 
 private:
-  DriveController &driveController;
+  AngleController &angleController;
 
   int thresholdAngle;
 };

@@ -9,7 +9,7 @@
 
 class ETRobo {
 public:
-  ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
+  ETRobo(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
   ~ETRobo();
 
   void initialize();

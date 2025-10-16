@@ -1,21 +1,23 @@
 #include "AngleDetector.h"
+#include <cstdio>
 
-AngleDetector::AngleDetector(DriveController &driveController, int thresholdAngle) :
+AngleDetector::AngleDetector(AngleController &angleController, int thresholdAngle) :
   Detector(),
-  driveController(driveController),
+  angleController(angleController),
   thresholdAngle(thresholdAngle) {
 }
 
 void AngleDetector::reset_angle() {
-  driveController.reset_angle();
+  angleController.resetAngle();
 }
 
 bool AngleDetector::detect() {
-  int angle = driveController.get_angle();
+  AngleController::myxyz xyz = angleController.getAngle();
+  printf("%f %f %f\n", xyz.x, xyz.y, xyz.z);
   
   if (thresholdAngle > 0){
-    return thresholdAngle < angle ; // Return true if detected within threshold, else false
+    return thresholdAngle < xyz.z ; // Return true if detected within threshold, else false
   } else {
-    return angle < thresholdAngle ; // Return true if detected within negative threshold, else false
+    return xyz.z < thresholdAngle ; // Return true if detected within negative threshold, else false
   }
 }

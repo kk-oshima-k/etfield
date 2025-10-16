@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "ETRobo/ETRobo.h"
+#include "Device/AngleController.h"
 #include "Device/DriveController.h"
 #include "Device/ColorSensorController.h"
 #include "Device/UltrasonicSensorController.h"
@@ -30,10 +31,11 @@ void main_task(intptr_t unused) {
   
   Clock clock;
 
+  AngleController angleController;
   DriveController driveController;
   ColorSensorController colorSensorController;
   UltrasonicSensorController ultrasonicSensorController;
-  etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
+  etrobo = new ETRobo(angleController, driveController, colorSensorController, ultrasonicSensorController);
 
 #ifdef MAKE_RASPIKE // not sim
   char datetime[64];

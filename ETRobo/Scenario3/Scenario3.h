@@ -25,8 +25,8 @@ public:
 };
 class Scenario3Scene3 : public RotationScene {
 public:
-  Scenario3Scene3(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 90) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene3(AngleController &angleController, DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 90) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene4 : public StraightScene {
 public:
@@ -46,8 +46,8 @@ public:
 };
 class Scenario3Scene6 : public RotationScene {
 public:
-  Scenario3Scene6(DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -50) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene6(AngleController &angleController, DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -50) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene7 : public StraightScene {
 public:
@@ -59,8 +59,8 @@ public:
 };
 class Scenario3Scene8 : public RotationScene {
 public:
-  Scenario3Scene8(DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -70) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene8(AngleController &angleController, DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -70) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene9 : public StraightScene {
 public:
@@ -72,8 +72,8 @@ public:
 };
 class Scenario3Scene10 : public RotationScene {
 public:
-  Scenario3Scene10(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 30) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene10(AngleController &angleController, DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 30) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene11 : public FindBottleWithLineTraceScene {
 public:
@@ -93,8 +93,8 @@ public:
 };
 class Scenario3Scene13 : public RotationScene {
 public:
-  Scenario3Scene13(DriveController &driveController, int angularVelocity = -65, int thresholdAngle = -90) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene13(AngleController &angleController, DriveController &driveController, int angularVelocity = -65, int thresholdAngle = -90) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene14 : public StraightScene {
 public:
@@ -114,8 +114,8 @@ public:
 };
 class Scenario3Scene16 : public RotationScene {
 public:
-  Scenario3Scene16(DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -90) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene16(AngleController &angleController, DriveController &driveController, int angularVelocity = -60, int thresholdAngle = -90) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene17 : public StraightScene {
 public:
@@ -127,8 +127,8 @@ public:
 };
 class Scenario3Scene18 : public RotationScene {
 public:
-  Scenario3Scene18(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 70) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene18(AngleController &angleController, DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 70) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene19 : public StraightScene {
 public:
@@ -140,8 +140,8 @@ public:
 };
 class Scenario3Scene20 : public RotationScene {
 public:
-  Scenario3Scene20(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 100) :
-    RotationScene(driveController, angularVelocity, thresholdAngle) {}
+  Scenario3Scene20(AngleController &angleController, DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 100) :
+    RotationScene(angleController, driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene21 : public LineTraceScene {
 public:
@@ -170,7 +170,7 @@ public:
 
 class Scenario3 : public Scenario {
 public:
-  Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
+  Scenario3(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
 
   int process_scene() override;
 

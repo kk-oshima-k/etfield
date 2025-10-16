@@ -5,7 +5,7 @@
 extern FILE *fp;
 #endif
 
-Scenario::Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
+Scenario::Scenario(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scene_index(0)
 {
 }

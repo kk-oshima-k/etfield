@@ -1,11 +1,11 @@
 #include "RotationScene.h"
 #include <vector>
 
-RotationScene::RotationScene(DriveController &driveController,
+RotationScene::RotationScene(AngleController &angleController, DriveController &driveController,
                                int angularVelocity,
                                int thresholdAngle) :
   rotationDriver(driveController, angularVelocity),
-  angleDetector(driveController, thresholdAngle){
+  angleDetector(angleController, thresholdAngle){
     init(&rotationDriver, {&angleDetector});
 }
 

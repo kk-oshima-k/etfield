@@ -2,6 +2,7 @@
 #define SCENARIO_H
 
 #include <vector>
+#include "../Device/AngleController.h"
 #include "../Device/DriveController.h"
 #include "../Device/ColorSensorController.h"
 #include "../Device/UltrasonicSensorController.h"
@@ -9,7 +10,7 @@
 
 class Scenario {
 public:
-  Scenario(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
+  Scenario(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController);
   virtual ~Scenario();
 
 public:

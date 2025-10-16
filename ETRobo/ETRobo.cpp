@@ -5,12 +5,12 @@
 extern FILE *fp;
 #endif
 
-ETRobo::ETRobo(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
+ETRobo::ETRobo(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
   current_scenario_index(0)
 {
-    scenarios.push_back(new Scenario1(driveController, colorSensorController, ultrasonicSensorController));
-    scenarios.push_back(new Scenario2(driveController, colorSensorController, ultrasonicSensorController));
-    scenarios.push_back(new Scenario3(driveController, colorSensorController, ultrasonicSensorController));
+    scenarios.push_back(new Scenario1(angleController, driveController, colorSensorController, ultrasonicSensorController));
+    scenarios.push_back(new Scenario2(angleController, driveController, colorSensorController, ultrasonicSensorController));
+    scenarios.push_back(new Scenario3(angleController, driveController, colorSensorController, ultrasonicSensorController));
 }
 
 ETRobo::~ETRobo() {
@@ -27,7 +27,6 @@ void ETRobo::initialize(){
 
 int ETRobo::process() {
   int next_scenario_index = process_scenario(); // Process the current scenario
-  printf("e%d\n", next_scenario_index);
   if(switch_scenario(next_scenario_index) == -1) // Switch to the next scenario based on the result
     return 1;
   return 0;
