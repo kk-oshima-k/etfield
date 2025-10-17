@@ -1,5 +1,5 @@
 #include "AngleController.h"
-#include <math.h>
+#include <cmath>
 #include <cstdio>
 
 #define PI 3.141592653589793238462643
@@ -20,9 +20,23 @@ AngleController::myxyz AngleController::getAngle() {
   float pitch_deg = pitch * 180.0 / PI;
   printf("pitch %d\n", pitch_deg);
 
+  // xyは仮
   xyz.x += (ang.x * cos(pitch) + ang.z * sin(pitch)) * 50 * 0.001;
   xyz.y += ang.y * 50 * 0.001;
-  xyz.z += (ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
+  float zaxis = (ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
+  if(std::fabs(zaxis) > 0.05){
+    xyz.z += zaxis;
+  }
+
+  
+  //テスト用
+  // float zdiff = std::fabs(xyz.z - ano_z);
+  // if(zdiff > zdiffmax){
+  //   zdiffmax = zdiff;
+  // }
+  // printf("zdiffmax %f\n", zdiffmax);
+  // ano_z = xyz.z;
+
   return xyz;
 }
 

@@ -14,6 +14,7 @@ public:
   void run_with_motor_powers(int left_power, int right_power);
   void run_with_speed_and_direction(int velocity, int angular_velocity);
   void run_with_power_and_direction(int velocity, int angular_velocity);
+  void run_with_power_and_Rotation(int velocity, int angular_velocity);
   void stop();
 
   int get_distance() const;

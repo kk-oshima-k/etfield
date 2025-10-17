@@ -13,7 +13,7 @@ void AngleDetector::reset_angle() {
 
 bool AngleDetector::detect() {
   AngleController::myxyz xyz = angleController.getAngle();
-  printf("%f %f %f\n", xyz.x, xyz.y, xyz.z);
+  printf("angle %f\n", xyz.z);
   
   if (thresholdAngle > 0){
     return thresholdAngle < xyz.z ; // Return true if detected within threshold, else false

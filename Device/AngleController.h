@@ -23,6 +23,10 @@ public:
 
 private:
   myxyz xyz; 
+
+  // テスト用
+  // float ano_z;
+  // float zdiffmax;
 };
 
 #endif // ANGLE_CONTROLLER_H

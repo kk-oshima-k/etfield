@@ -8,7 +8,7 @@ RotationDriver::RotationDriver(DriveController &driveController, int angularVelo
 void RotationDriver::drive() {
 printf("%2d\n", angularVelocity);
   if(oldV != angularVelocity){
-  driveController.run_with_power_and_direction(0, angularVelocity);
+  driveController.run_with_power_and_Rotation(0, angularVelocity);
   oldV = angularVelocity;
   }
 }
