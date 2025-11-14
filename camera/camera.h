@@ -1,25 +1,19 @@
+#ifndef CAMERA_H
+#define CAMERA_H
+
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include "spikeapi.h"
+extern FILE* fp;
 
-#define MAIN_PRIORITY    (TMIN_APP_TPRI + 1)
-#define ETROBO_PRIORITY  (TMIN_APP_TPRI + 2)
 #define CAMERA_PRIORITY  (TMIN_APP_TPRI + 3)
-
-#ifndef STACK_SIZE
-#define STACK_SIZE      (4096)
-#endif /* STACK_SIZE */
 
 extern void initialize_camera();
 extern void close_camera();
 
 #ifndef TOPPERS_MACRO_ONLY
 
-extern void main_task(intptr_t exinf);
-extern void etrobo_task(intptr_t exinf);
-extern void etrobo_cyc(intptr_t exinf);
 extern void camera_task(intptr_t exinf);
 extern void camera_cyc(intptr_t exinf);
 #endif /* TOPPERS_MACRO_ONLY */
@@ -28,3 +22,4 @@ extern void camera_cyc(intptr_t exinf);
 }
 #endif
 
+#endif // CAMERA_H
