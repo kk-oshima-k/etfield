@@ -17,18 +17,14 @@ public:
   void run_with_power_and_Rotation(int velocity, int angular_velocity);
   void stop();
 
+  float get_speed() const;
+
   int get_distance() const;
   void reset_distance();
 
   int get_angle() const;
   void reset_angle();
-
-private:
-  int calculate_velocity2rotation(int velocity) const;
-
-  int calculate_distance() const;
-  int calculate_angle() const;
-
+  
   static double degrees_to_radians(double degrees) {
     return degrees * PI / 180.0;
   }
@@ -37,8 +33,17 @@ private:
   }
 
 private:
+  int calculate_velocity2rotation(int velocity) const;
+
+  int calculate_speed() const;
+  int calculate_distance() const;
+  int calculate_angle() const;
+
+
+private:
   Motor leftWheel;
   Motor rightWheel;
+
 
   const double wheel_diameter = 5.595; // cm
   const double wheel_base = 11.16; // cm

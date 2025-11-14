@@ -21,11 +21,11 @@ public:
 };
 class Scenario2Scene3 : public StraightScene {
 public:
-  Scenario2Scene3(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 50,
+  Scenario2Scene3(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController,
+          int velocity = 50, const PIDParameters &pidParameters = {0.6, 0.0, 0.0},
           LineColor color = LineColor::LINE_COLOR_BLACK,
           int thresholdDistance = 20) :
-    StraightScene(driveController, colorSensorController, velocity, color, thresholdDistance) {}
+    StraightScene(angleController, driveController, colorSensorController, velocity, pidParameters, color, thresholdDistance) {}
 };
 class Scenario2Scene4 : public RotationScene {
 public:
@@ -47,11 +47,11 @@ public:
 };
 class Scenario2Scene7 : public StraightScene {
 public:
-  Scenario2Scene7(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 50,
+  Scenario2Scene7(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController,
+          int velocity = 50, const PIDParameters &pidParameters = {0.6, 0.0, 0.0},
           LineColor color = LineColor::LINE_COLOR_BLACK,
           int thresholdDistance = 35) :
-    StraightScene(driveController, colorSensorController, velocity, color, thresholdDistance) {}
+    StraightScene(angleController, driveController, colorSensorController, velocity, pidParameters, color, thresholdDistance) {}
 };
 class Scenario2Scene8 : public RotationScene {
 public:
@@ -73,11 +73,11 @@ public:
 };
 class Scenario2Scene11 : public StraightScene {
 public:
-  Scenario2Scene11(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 50,
+  Scenario2Scene11(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController,
+          int velocity = 50, const PIDParameters &pidParameters = {0.6, 0.0, 0.0},
           LineColor color = LineColor::LINE_COLOR_BLACK,
           int thresholdDistance = 35) :
-    StraightScene(driveController, colorSensorController, velocity, color, thresholdDistance) {}
+    StraightScene(angleController, driveController, colorSensorController, velocity, pidParameters, color, thresholdDistance) {}
 };
 class Scenario2Scene12 : public RotationScene {
 public:
@@ -99,11 +99,11 @@ public:
 };
 class Scenario2Scene15 : public StraightScene {
 public:
-  Scenario2Scene15(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 50,
+  Scenario2Scene15(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController,
+          int velocity = 50, const PIDParameters &pidParameters = {0.6, 0.0, 0.0},
           LineColor color = LineColor::LINE_COLOR_WHITE,
           int thresholdDistance = 20) :
-    StraightScene(driveController, colorSensorController, velocity, color, thresholdDistance) {}
+    StraightScene(angleController, driveController, colorSensorController, velocity, pidParameters, color, thresholdDistance) {}
 };
 class Scenario2Scene16 : public RotationScene {
 public:

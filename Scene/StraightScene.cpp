@@ -1,12 +1,13 @@
 #include "StraightScene.h"
 #include <vector>
 
-StraightScene::StraightScene(DriveController &driveController, const ColorSensorController &colorSensorController,
-                               int velocity,
+StraightScene::StraightScene(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController,
+                               int velocity, const PIDParameters &pidParameters,
                                LineColor color,
                                int thresholdDistance) :
-  straightDriver(driveController, velocity),
+  straightDriver(angleController, driveController, velocity, pidParameters),
   colorDetector(colorSensorController, color),
+  angleDetector(angleController, 0),
   distanceDetector(driveController, thresholdDistance){
   init(&straightDriver, {&colorDetector, &distanceDetector});
 
@@ -14,4 +15,5 @@ StraightScene::StraightScene(DriveController &driveController, const ColorSensor
 
 void StraightScene::enter_scene() {
   distanceDetector.reset_distance();
+  angleDetector.reset_angle();
 }

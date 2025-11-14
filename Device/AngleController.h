@@ -15,6 +15,10 @@ public:
     float z;
   };
 
+  typedef struct Dev{
+    float d;
+  };
+
   AngleController();
 
   myxyz getAngle();
@@ -23,7 +27,10 @@ public:
 
 private:
   myxyz xyz; 
+  Dev dev;
 
+  float vprev = 0.0;
+  float aprev = 0.0;
   // テスト用
   // float ano_z;
   // float zdiffmax;

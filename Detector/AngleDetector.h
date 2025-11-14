@@ -14,7 +14,7 @@ public:
   bool detect() override;
 
 private:
-  AngleController &angleController;
+  AngleController angleController;
 
   int thresholdAngle;
 };

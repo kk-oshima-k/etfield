@@ -6,7 +6,8 @@
 
 AngleController::AngleController() :
   IMU(),
-  xyz{0.0, 0.0, 0.0}
+  xyz{0.0, 0.0, 0.0},
+  dev{0.0}
   {
 }
 
@@ -18,18 +19,21 @@ AngleController::myxyz AngleController::getAngle() {
 
   float pitch = atan2(-acc.x, sqrt(acc.y * acc.y + acc.z * acc.z));
   float pitch_deg = pitch * 180.0 / PI;
+
   printf("pitch %d\n", pitch_deg);
 
   // xyは仮
-  xyz.x += (ang.x * cos(pitch) + ang.z * sin(pitch)) * 50 * 0.001;
-  xyz.y += ang.y * 50 * 0.001;
+  // xyz.x += (ang.x * cos(pitch) + ang.z * sin(pitch)) * 50 * 0.001;
+  // xyz.y += ang.y * 50 * 0.001;
+  
   float zaxis = (ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
   if(std::fabs(zaxis) > 0.05){
     xyz.z += zaxis;
   }
+  // テスト用
+  // xyz.z +=(ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
 
-  
-  //テスト用
+  // テスト用
   // float zdiff = std::fabs(xyz.z - ano_z);
   // if(zdiff > zdiffmax){
   //   zdiffmax = zdiff;

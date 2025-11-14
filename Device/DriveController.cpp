@@ -85,6 +85,10 @@ void DriveController::stop() {
   rightWheel.stop();
 }
 
+float DriveController::get_speed() const{
+  return wheel_diameter * calculate_speed() * PI / 180.0;
+}
+
 int DriveController::get_distance() const{
   return calculate_distance();
 }
@@ -106,8 +110,12 @@ int DriveController::calculate_velocity2rotation(int velocity) const{
   return radians_to_degrees(velocity / (wheel_diameter / 2));
 }
 
+int DriveController::calculate_speed() const{
+  return leftWheel.getSpeed() + rightWheel.getSpeed() / 2;
+}
+
 int DriveController::calculate_distance() const{
-  return wheel_diameter / 2.0 * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2.0);
+  return wheel_diameter / 2.0 * degrees_to_radians((leftWheel.getCount() + rightWheel.getCount()) / 2);
 }
 
 int DriveController::calculate_angle() const{
