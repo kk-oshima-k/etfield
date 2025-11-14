@@ -28,18 +28,21 @@ AngleController::myxyz AngleController::getAngle() {
   
   float zaxis = (ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
   if(std::fabs(zaxis) > 0.05){
-    xyz.z += zaxis;
+    z1 += zaxis;
   }
   // テスト用
-  // xyz.z +=(ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
+  // z1 +=(ang.x * cos(pitch) - ang.z * sin(pitch)) * 50 * 0.001;
 
   // テスト用
-  // float zdiff = std::fabs(xyz.z - ano_z);
+  // float zdiff = std::fabs(z1 - ano_z);
   // if(zdiff > zdiffmax){
   //   zdiffmax = zdiff;
   // }
   // printf("zdiffmax %f\n", zdiffmax);
-  // ano_z = xyz.z;
+  // ano_z = z1;
+  int z2 = driveController.get_angle();
+
+  xyz.z = 0.5 * z1 + 0.5 * z2;
 
   return xyz;
 }

@@ -8,8 +8,8 @@ extern FILE *fp;
 Scenario1::Scenario1(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
     Scenario(angleController, driveController, colorSensorController, ultrasonicSensorController)
 {
-    scenes.push_back(new StraightScene(angleController, driveController, colorSensorController, 50, {2.0, 0.015, 1.5}, LineColor::LINE_COLOR_NONE, 0));
-    // scenes.push_back(new RotationScene(angleController, driveController, 0, 82));
+    // scenes.push_back(new StraightScene(angleController, driveController, colorSensorController, 50, {2.0, 0.015, 1.5}, LineColor::LINE_COLOR_NONE, 0));
+    scenes.push_back(new RotationScene(angleController, driveController, 10, 90));
     // scenes.push_back(new RotationScene(angleController, driveController, 0, 90000000));
     // scenes.push_back(new StraightScene(driveController, colorSensorController, 0, LineColor::LINE_COLOR_NONE, 0));
     // scenes.push_back(new LineTraceScene(driveController, colorSensorController, 100, true, {0.6, 0.015, 1.5}, 56, LINE_COLOR_ANY, 174));

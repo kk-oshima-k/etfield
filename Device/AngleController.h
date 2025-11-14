@@ -3,6 +3,7 @@
 
 #include <IMU.h>
 #include <math.h>
+#include "../Device/DriveController.h"
 
 using namespace spikeapi;
 
@@ -28,7 +29,9 @@ public:
 private:
   myxyz xyz; 
   Dev dev;
+  DriveController driveController;
 
+  float z1 = 0.0;
   float vprev = 0.0;
   float aprev = 0.0;
   // テスト用
