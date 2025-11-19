@@ -5,6 +5,7 @@
 extern FILE *fp;
 #endif
 
+
 Scenario3::Scenario3(DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
     Scenario(driveController, colorSensorController, ultrasonicSensorController)
 {
@@ -38,8 +39,20 @@ int Scenario3::Scenario3::process_scene() {
     int scene_result = scenes[current_scene_index]->process_scene();
     if(scene_result == 0){
         return current_scene_index; // Stay in the current scene
-    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1) {
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && camera_find == 1) {
         return current_scene_index + 1; // Move to the next scene
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && current_scene_index == 4) {
+        return 29; // 今のシーンが4でありゲートが認識できていないのであればシーン29へ
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && current_scene_index == 37) {
+        return 10; 
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && current_scene_index == 17) {
+        return 38; 
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && current_scene_index == 38) {
+        return 19; 
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && current_scene_index == 21) {
+        return 39; 
+    } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1 && current_scene_index == 39) {
+        return 23; 
     }
     return -1;
 }

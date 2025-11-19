@@ -16,6 +16,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 #include <errno.h>
+#include <string.h>
 
 ETRobo *etrobo;
 
@@ -25,65 +26,69 @@ FILE *fp;
 
 using namespace spikeapi;
 
+int camera_find = 0;
+int center_x = 0;
+int width_between = 0;
+
 void etrobo_task(intptr_t exinf) {
-  etrobo->process();
-  ext_tsk();
+    etrobo->process();
+    ext_tsk();
 }
 
 void main_task(intptr_t unused) {
-  const uint32_t duration = 100*1000;
-  ForceSensor forceSensor(EPort::PORT_D);
-  
-  Clock clock;
+    const uint32_t duration = 100*1000;
+    ForceSensor forceSensor(EPort::PORT_D);
+    
+    Clock clock;
 
-  DriveController driveController;
-  ColorSensorController colorSensorController;
-  UltrasonicSensorController ultrasonicSensorController;
-  etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
+    DriveController driveController;
+    ColorSensorController colorSensorController;
+    UltrasonicSensorController ultrasonicSensorController;
+    etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
 
 #ifdef MAKE_RASPIKE // not sim
-  char datetime[64];
-  char path[256];
-  time_t t = time(NULL);
-  strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
-  sprintf(path, "/home/kklab/RasPike-ART/sdk/workspace/etfield/log/%s.txt", datetime);
-  printf("test:%s\n", path);
-  fp = fopen(path, "a");
+    char datetime[64];
+    char path[256];
+    time_t t = time(NULL);
+    strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
+    sprintf(path, "/home/kklab/RasPike-ART/sdk/workspace/etfield/log/%s.txt", datetime);
+    printf("test:%s\n", path);
+    fp = fopen(path, "a");
 #endif
 
-  while (!forceSensor.isTouched()) {
-      clock.sleep(duration);
-  }
-  while (forceSensor.isTouched()) {
-      clock.sleep(duration);
-  }
+    while (!forceSensor.isTouched()) {
+        clock.sleep(duration);
+    }
+    while (forceSensor.isTouched()) {
+        clock.sleep(duration);
+    }
 
-  char mes[256];
-  time_t mest = time(NULL);
-  strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&mest));
-  sprintf(mes, "Start! %s\n", datetime);
-  printf("%s", mes);
+    char mes[256];
+    time_t mest = time(NULL);
+    strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&mest));
+    sprintf(mes, "Start! %s\n", datetime);
+    printf("%s", mes);
 #ifdef MAKE_RASPIKE // not sim
-  fprintf(fp, "%s", mes);
+    fprintf(fp, "%s", mes);
 #endif
-  etrobo->initialize();
-  initialize_camera();
+    etrobo->initialize();
+    initialize_camera();
 
-  sta_cyc(CAMERA_CYC);
-  sta_cyc(ETROBO_CYC);
+    sta_cyc(CAMERA_CYC);
+    sta_cyc(ETROBO_CYC);
 
-  while (!forceSensor.isTouched()) {
-      clock.sleep(duration);
-  }
+    while (!forceSensor.isTouched()) {
+        clock.sleep(duration);
+    }
 
-  stp_cyc(CAMERA_CYC);
-  stp_cyc(ETROBO_CYC);
-  etrobo->terminate();
-  close_camera();
+    stp_cyc(CAMERA_CYC);
+    stp_cyc(ETROBO_CYC);
+    etrobo->terminate();
+    close_camera();
 #ifdef MAKE_RASPIKE // not sim
-  fclose(fp);
+    fclose(fp);
 #endif
-  ext_tsk(); // <5>
+    ext_tsk(); // <5>
 }
 
 int sock;
@@ -118,5 +123,26 @@ void camera_task(intptr_t exinf) {
         }
     }else{
         printf("recv: %s\n", buf);
+        char *s = buf, *e;
+        if(*s == '1'){
+            s = strchr(s, ',');
+            if(s == NULL){
+                // error
+                return;
+            }
+            s += 1;
+            e = strchr(s, ',');
+            if(e == NULL){
+                // error
+                return;
+            }
+            *e = '\0';
+            int x = atoi(s);
+            s = e+1;
+            int w = atoi(s);
+            camera_find = 1;
+            center_x = x;
+            width_between = w;
+        }
     }
 }

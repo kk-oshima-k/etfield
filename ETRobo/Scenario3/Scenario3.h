@@ -6,6 +6,7 @@
 #include "../../Scene/StraightScene.h"
 #include "../../Scene/RotationScene.h"
 #include "../../Scene/FindBottleWithLineTraceScene.h"
+#include "GateScene.h"
 
 class Scenario3Scene1 : public FindBottleWithLineTraceScene {
 public:
@@ -15,17 +16,17 @@ public:
           int bottleDistace = 200) :
     FindBottleWithLineTraceScene(driveController, colorSensorController, ultrasonicSensorController, velocity, rightEdge, pidParameters, target, thresholdDistance, bottleDistace) {}
 };
-class Scenario3Scene2 : public StraightScene {
+class Scenario3Scene2 : public LineTraceScene {
 public:
-  Scenario3Scene2(DriveController &driveController, const ColorSensorController &colorSensorController,
-          int velocity = 50,
-          LineColor color = LineColor::LINE_COLOR_ANY,
-          int thresholdDistance = 13) :
-    StraightScene(driveController, colorSensorController, velocity, color, thresholdDistance) {}
+  Scenario2Scene1(DriveController &driveController, const ColorSensorController &colorSensorController,
+          int velocity = 50, bool rightEdge = true, const PIDParameters &pidParameters = {0.6, 0.005, 1.0}, int target = 56,
+          LineColor color = LineColor::LINE_COLOR_BLACK,
+          int thresholdDistance = 45) :
+    LineTraceScene(driveController, colorSensorController, velocity, rightEdge, pidParameters, target, color, thresholdDistance) {}
 };
 class Scenario3Scene3 : public RotationScene {
 public:
-  Scenario3Scene3(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 95) :
+  Scenario3Scene3(DriveController &driveController, int angularVelocity = 60, int thresholdAngle = 90) :
     RotationScene(driveController, angularVelocity, thresholdAngle) {}
 };
 class Scenario3Scene4 : public StraightScene {
