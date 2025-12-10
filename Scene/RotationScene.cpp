@@ -5,7 +5,7 @@ RotationScene::RotationScene(AngleController &angleController, DriveController &
                                int angularVelocity,
                                int thresholdAngle) :
   rotationDriver(driveController, angularVelocity),
-  angleDetector(angleController, thresholdAngle){
+  angleDetector(angleController, driveController, thresholdAngle){
     init(&rotationDriver, {&angleDetector});
 }
 

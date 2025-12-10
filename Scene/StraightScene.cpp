@@ -7,7 +7,7 @@ StraightScene::StraightScene(AngleController &angleController, DriveController &
                                int thresholdDistance) :
   straightDriver(angleController, driveController, velocity, pidParameters),
   colorDetector(colorSensorController, color),
-  angleDetector(angleController, 0),
+  angleDetector(angleController, driveController, 0),
   distanceDetector(driveController, thresholdDistance){
   init(&straightDriver, {&colorDetector, &distanceDetector});
 
