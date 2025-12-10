@@ -46,8 +46,8 @@ void main_task(intptr_t unused) {
     UltrasonicSensorController ultrasonicSensorController;
     etrobo = new ETRobo(driveController, colorSensorController, ultrasonicSensorController);
 
-#ifdef MAKE_RASPIKE // not sim
     char datetime[64];
+#ifdef MAKE_RASPIKE // not sim
     char path[256];
     time_t t = time(NULL);
     strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&t));
@@ -55,14 +55,6 @@ void main_task(intptr_t unused) {
     printf("test:%s\n", path);
     fp = fopen(path, "a");
 #endif
-
-    while (!forceSensor.isTouched()) {
-        clock.sleep(duration);
-    }
-    while (forceSensor.isTouched()) {
-        clock.sleep(duration);
-    }
-
     char mes[256];
     time_t mest = time(NULL);
     strftime(datetime, sizeof(datetime), "%Y%m%d_%H%M%S", localtime(&mest));
@@ -75,11 +67,24 @@ void main_task(intptr_t unused) {
     initialize_camera();
 
     sta_cyc(CAMERA_CYC);
-    sta_cyc(ETROBO_CYC);
 
+#ifdef MAKE_RASPIKE // not sim
     while (!forceSensor.isTouched()) {
         clock.sleep(duration);
     }
+    while (forceSensor.isTouched()) {
+        clock.sleep(duration);
+    }
+
+#endif
+
+    sta_cyc(ETROBO_CYC);
+
+#ifdef MAKE_RASPIKE // not sim
+    while (!forceSensor.isTouched()) {
+        clock.sleep(duration);
+    }
+#endif
 
     stp_cyc(CAMERA_CYC);
     stp_cyc(ETROBO_CYC);

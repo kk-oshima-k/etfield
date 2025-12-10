@@ -15,6 +15,7 @@ APPL_CXXOBJS += \
 	AngleDetector.o \
 	Scene.o \
 	StraightScene.o \
+	GateScene.o \
 	FindBottleWithLineTraceScene.o \
 	LineTraceScene.o \
 	RotationScene.o \
