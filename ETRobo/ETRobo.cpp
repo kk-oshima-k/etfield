@@ -47,7 +47,6 @@ int ETRobo::process_scenario() {
   return -1;
 }
 
-
 int ETRobo::switch_scenario(int scenario_index) {
   if (scenario_index < 0 || scenario_index >= (int)scenarios.size()) {
     current_scenario_index = -1; // End the scenario if the scene index is invalid

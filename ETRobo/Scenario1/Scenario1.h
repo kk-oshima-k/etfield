@@ -77,7 +77,7 @@ public:
   Scenario1Scene10(DriveController &driveController, const ColorSensorController &colorSensorController,
           int velocity = 60, bool rightEdge = true, const PIDParameters &pidParameters = {0.7, 0.01, 1.0}, int target = 51,
           LineColor color = LineColor::LINE_COLOR_ANY,
-          int thresholdDistance = 42) :
+          int thresholdDistance = 45) :
     LineTraceScene(driveController, colorSensorController, velocity, rightEdge, pidParameters, target, color, thresholdDistance) {}
 };
 class Scenario1Scene11 : public LineTraceScene {
@@ -93,7 +93,7 @@ public:
   Scenario1Scene12(DriveController &driveController, const ColorSensorController &colorSensorController,
           int velocity = 60, bool rightEdge = true, const PIDParameters &pidParameters = {0.7, 0.01, 1.0}, int target = 51,
           LineColor color = LineColor::LINE_COLOR_ANY,
-          int thresholdDistance = 42) :
+          int thresholdDistance = 45) :
     LineTraceScene(driveController, colorSensorController, velocity, rightEdge, pidParameters, target, color, thresholdDistance) {}
 };
 class Scenario1Scene13 : public LineTraceScene {

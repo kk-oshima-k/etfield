@@ -8,20 +8,20 @@
 class Scene {
 protected:
   Scene();
-  void init(Driver *driver, std::vector<Detector *> detectors);
+  void init(Driver *driver, std::vector<Detector *> detectors=std::vector<Detector *>());
 
 public:
   virtual ~Scene();
 
 public:
   virtual void enter_scene();
-  int process_scene();
-  void terminate_scene();
+  virtual int process_scene();
+  virtual void terminate_scene();
 
 protected:
-  void process_drive();
-  bool process_finish_detect();
-  void terminate_drive();
+  virtual void process_drive();
+  virtual bool process_finish_detect();
+  virtual void terminate_drive();
 
   Driver *driver;
   std::vector<Detector *> detectors;
