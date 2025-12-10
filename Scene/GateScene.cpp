@@ -8,9 +8,9 @@ extern int Gate;
 extern int Gate_finish;
 extern int camera_find;
 
-GateScene::GateScene(DriveController &driveController,
-                               int velocity) :
-    straightDriver(driveController, velocity),
+GateScene::GateScene(AngleController &angleController, DriveController &driveController,
+                               int velocity, const PIDParameters &pidParameters) :
+    straightDriver(angleController, driveController, velocity, pidParameters),
     find_count(0), time_count(0){
     init(&straightDriver);
 }

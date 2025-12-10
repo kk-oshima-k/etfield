@@ -13,8 +13,8 @@ using namespace spikeapi;
 
 class GateScene : public Scene {
 public:
-  GateScene(DriveController &driveController,
-             int velocity = 0);
+  GateScene(AngleController &angleController, DriveController &driveController,
+             int velocity = 0, const PIDParameters &pidParameters = {0.6, 0.0, 0.0});
 
   void enter_scene() override;
   int process_scene();
