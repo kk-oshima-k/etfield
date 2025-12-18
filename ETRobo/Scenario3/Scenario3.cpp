@@ -69,11 +69,11 @@ int Scenario3::Scenario3::process_scene() {
         return 40;
     } else if (current_scene_index == 22 && scene_result == 2){
         return 41;
-    } else if (current_scene_index == 39 && scene_result == 2){
+    } else if (current_scene_index == 39){
         return 11;
-    } else if (current_scene_index == 40 && scene_result == 2){
+    } else if (current_scene_index == 40){
         return 20;
-    } else if (current_scene_index == 41 && scene_result == 2){
+    } else if (current_scene_index == 41){
         return 24;
     } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1) {
         return current_scene_index + 1; // Move to the next scene
