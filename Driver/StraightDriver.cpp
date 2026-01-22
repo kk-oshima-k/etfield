@@ -21,7 +21,7 @@ int StraightDriver::calculate_PID_gain() {
   
   float error2 = xyz.z;
 
-  float error = (0.5 * error1) + (0.5 * error2);
+  float error = ((0.5 * error1) + (0.5 * error2)) * 5;
   printf("e %f\nz %f\nspeed %f", error, xyz.z, driveController.get_speed());
 
   int output = pidParameters.kp * -error;

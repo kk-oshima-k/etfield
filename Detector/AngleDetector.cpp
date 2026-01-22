@@ -17,7 +17,7 @@ bool AngleDetector::detect() {
   AngleController::myxyz xyz = angleController.getAngle();
   float drive_z = driveController.get_angle();
 
-  float angle = (0.6 * xyz.z) + (0.4 * drive_z);
+  float angle = (1.0 * xyz.z) + (0 * drive_z);
   printf("angle %d\n", angle);
   
   if (thresholdAngle > 0){

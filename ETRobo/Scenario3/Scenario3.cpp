@@ -7,7 +7,8 @@ extern FILE *fp;
 
 
 Scenario3::Scenario3(AngleController &angleController, DriveController &driveController, const ColorSensorController &colorSensorController, const UltrasonicSensorController &ultrasonicSensorController) :
-    Scenario(angleController, driveController, colorSensorController, ultrasonicSensorController)
+    Scenario(angleController, driveController, colorSensorController, ultrasonicSensorController),
+    gate(0)
 {
     scenes.push_back(new Scenario3Scene0(driveController, colorSensorController, ultrasonicSensorController));
     scenes.push_back(new Scenario3Scene1(angleController, driveController, colorSensorController));
@@ -61,20 +62,30 @@ int Scenario3::Scenario3::process_scene() {
         return current_scene_index; // Stay in the current scene
     } else if (current_scene_index == 4){
         if(scene_result == 1){
+            gate = 1;
             return 5;
         }else if(scene_result == 2){
+            gate = 2;
             return 31;
         }
-    } else if (current_scene_index == 18 && scene_result == 2){
-        return 40;
-    } else if (current_scene_index == 22 && scene_result == 2){
-        return 41;
     } else if (current_scene_index == 39){
         return 11;
     } else if (current_scene_index == 40){
         return 20;
     } else if (current_scene_index == 41){
         return 24;
+    } else if (current_scene_index == 15){
+        return 18;
+    } else if (current_scene_index == 18){
+        if (gate == 1)
+            return 19;  
+        else if (gate == 2)
+            return 40;
+    } else if (current_scene_index == 22){
+        if (gate == 1)
+            return 23;  
+        else if (gate == 2)
+            return 41;
     } else if (scene_result == 1 && current_scene_index < (int)scenes.size() - 1) {
         return current_scene_index + 1; // Move to the next scene
     }

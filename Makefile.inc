@@ -9,6 +9,7 @@ APPL_CXXOBJS += \
 	LineTracer.o \
 	StraightDriver.o \
 	RotationDriver.o \
+	RotationDriverPos.o \
 	Detector.o \
 	ColorDetector.o \
 	UltrasonicDetector.o \
@@ -20,6 +21,7 @@ APPL_CXXOBJS += \
 	FindBottleWithLineTraceScene.o \
 	LineTraceScene.o \
 	RotationScene.o \
+	RotationScenePos.o \
 	Scenario.o \
 	ETRobo.o \
 	Scenario1.o \
